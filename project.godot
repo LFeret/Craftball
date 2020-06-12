@@ -16,7 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Craftball"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[gdnative]
+
+singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
 
 [rendering]
 

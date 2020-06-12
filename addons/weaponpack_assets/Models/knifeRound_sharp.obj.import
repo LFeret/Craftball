@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/knifeRound_sharp.obj-aeb80d93f23709288f5d65eafe9ad808.mesh"
+
+[deps]
+
+files=[ "res://.import/knifeRound_sharp.obj-aeb80d93f23709288f5d65eafe9ad808.mesh" ]
+
+source_file="res://addons/weaponpack_assets/Models/knifeRound_sharp.obj"
+dest_files=[ "res://.import/knifeRound_sharp.obj-aeb80d93f23709288f5d65eafe9ad808.mesh", "res://.import/knifeRound_sharp.obj-aeb80d93f23709288f5d65eafe9ad808.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
