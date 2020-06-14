@@ -54,7 +54,7 @@ func pick_up(by, with_controller):
 	
 	# turn off physics on our pickable object
 	mode = RigidBody.MODE_STATIC
-	collision_layer = picked_up_layer
+	collision_layer = 0#picked_up_layer
 	collision_mask = 0
 	
 	# now reparent it

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Handgun_obj.obj-dc455b9f31a4adc8cad1ad2b44b1d462.mesh"
+
+[deps]
+
+files=[ "res://.import/Handgun_obj.obj-dc455b9f31a4adc8cad1ad2b44b1d462.mesh" ]
+
+source_file="res://addons/waffe/45 ACP Smith and Wesson Hand Gun/Handgun_obj.obj"
+dest_files=[ "res://.import/Handgun_obj.obj-dc455b9f31a4adc8cad1ad2b44b1d462.mesh", "res://.import/Handgun_obj.obj-dc455b9f31a4adc8cad1ad2b44b1d462.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
