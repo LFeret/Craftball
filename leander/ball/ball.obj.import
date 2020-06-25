@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ball.obj-8fd04b943c3cfac928125ea6ba499eff.mesh"
+
+[deps]
+
+files=[ "res://.import/ball.obj-8fd04b943c3cfac928125ea6ba499eff.mesh" ]
+
+source_file="res://leander/ball/ball.obj"
+dest_files=[ "res://.import/ball.obj-8fd04b943c3cfac928125ea6ba499eff.mesh", "res://.import/ball.obj-8fd04b943c3cfac928125ea6ba499eff.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
