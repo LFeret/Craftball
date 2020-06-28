@@ -4,8 +4,8 @@ var hex_tile
 
 var node_player
 
-export var grid_w:int=9
-export var grid_h:int=9
+export var grid_w:int=20
+export var grid_h:int=20
 
 var hex_w:float=1.73205
 var hex_h:float=2.0
@@ -51,10 +51,28 @@ func create_grid():
 			var hex_pos = calc_world_pos(grid_pos)
 			hex.set_translation(hex_pos)
 			hexes.append(hex)
+			
+			if y == 0:
+				hex.set_is_wall(true)
+			elif x == 0:
+				hex.set_is_wall(true)
+			if y == 1:
+				hex.set_is_wall(true)
+			elif x == 1:
+				hex.set_is_wall(true)
+			elif y+1 == grid_h:
+				hex.set_is_wall(true)
+			elif x+1 == grid_w:
+				hex.set_is_wall(true)
+			elif y+2 == grid_h:
+				hex.set_is_wall(true)
+			elif x+2 == grid_w:
+				hex.set_is_wall(true)
 
 func setup_map():
 	var i = 0
 	for hex in hexes:
-		# you can add objects to initialize over the map here
+		if hex.get_is_wall():
+			hex.set_to_wall()
 		
 		i += 1

@@ -25,6 +25,9 @@ height = 45.2114
 
 [node name="World" type="Spatial"]
 
+[node name="global_light" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.554017, 0.832506, 0, -0.832506, 0.554017, 0, 10.1816, 7.12866 )
+
 [node name="board" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21902, 0 )
 
@@ -42,7 +45,7 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386134, 0.121518, 2.06076 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386134, 0.121518, 7.61707 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 13.271, 0, 0, 0, 0.059, 0, 0, 0, 13.784, 0.000355005, 0.00865889, -0.00125623 )

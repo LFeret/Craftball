@@ -1,6 +1,7 @@
 extends Spatial
 
 var current_holding = null
+var is_wall = false
 
 func set_current_holding(child):
 	current_holding = child
@@ -20,8 +21,10 @@ func is_holding(compare):
 func _on_Area_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed == true:
+			print("is_wall: " + str(get_is_wall()))
 			print("Hex Left Mouse Button")
 		if event.button_index == BUTTON_LEFT and event.pressed == false:
+			print("is_wall: " + str(get_is_wall()))
 			print("Hex Left Mouse Button Release")
 		if event.button_index == BUTTON_RIGHT and event.pressed == true:
 			print("Hex Pressed Right Mouse Button")
@@ -33,3 +36,13 @@ func _on_Area_input_event(camera, event, click_position, click_normal, shape_idx
 			print("Hex Middle Mouse Button Release")
 		if event.button_index == BUTTON_LEFT and event.doubleclick == true:
 			print("Hex Left Mouse Button Double Clicked")
+
+func set_to_wall():
+	set_scale(Vector3(1,200,1))
+	set_translation(Vector3(translation.x, 18.5, translation.z))
+
+func set_is_wall(set_is_wall):
+	is_wall = set_is_wall
+
+func get_is_wall():
+	return is_wall
