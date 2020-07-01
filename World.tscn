@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://myObjects/Guns/Handgun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://leander/hex_map/board.tscn" type="PackedScene" id=3]
+[ext_resource path="res://leander/ball/ball.res" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -63,3 +64,6 @@ shape = SubResource( 7 )
 
 [node name="Gun" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458401, 1.55215, 0 )
+
+[node name="ball" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.59981, 5.09254 )
