@@ -1,8 +1,45 @@
 extends ARVROrigin
 
+var current_ball = null
+var world = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var arvr_interface = ARVRServer.find_interface("OpenVR")
 	if(arvr_interface and arvr_interface.initialize()):
 		get_viewport().arvr = true
 		get_viewport().hdr = false
+
+# leander stuff
+func set_world(current_world):
+	world = current_world
+
+func holds_ball():
+	if is_instance_valid(current_ball):
+		if current_ball == null:
+			return false
+		else:
+			return true
+	else:
+		current_ball = null
+		return false
+
+func set_ball_to_right_hand(ball):
+	current_ball = ball
+	add_child(current_ball)
+	print("set ball to right hand picked up")
+
+func throw_current_ball():
+	current_ball.sleeping = false
+	
+	# reparent to world
+	var old_position = current_ball.get_global_transform().origin
+	self.remove_child(current_ball)
+	world.add_child(current_ball)
+	current_ball.translate(old_position)
+	
+	# TODO: Add thrall
+	current_ball.add_force(Vector3(-200,-200,-200), Vector3(0,0,0)) # force, position
+	
+	current_ball = null
+	print("throw current ball TODO: Add physics")
