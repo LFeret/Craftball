@@ -40,7 +40,6 @@ func paint_self(color):
 			material.albedo_color = Color(1,0,0)
 	
 	$MeshInstance.set_surface_material(0, material)
-	print("Painted")
 
 func _on_HexTile_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton:
