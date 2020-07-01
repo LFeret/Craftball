@@ -1,16 +1,27 @@
-extends Spatial
+extends RigidBody
 
+export var bouncing_count:int
+var current_bounc_count:int
+var color = 'red'
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+  current_bounc_count = 0
+
+func _on_ball_body_entered(body):
+	print("Body Entered Ball")
+	
+	# Painting Floor Stuff
+	if body.get_type() == 'HexTile':
+		body.paint_self(color)
+	
+	# Bouncing Stuff
+	current_bounc_count += 1
+	
+	if current_bounc_count >= bouncing_count:
+		if is_instance_valid(self):
+			self.queue_free()
+	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_ball_body_exited(body):
+	print("Body Exited Ball")
