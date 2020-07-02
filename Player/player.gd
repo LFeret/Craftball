@@ -26,7 +26,11 @@ func holds_ball():
 
 func set_ball_to_right_hand(ball):
 	current_ball = ball
-	add_child(current_ball)
+	
+	# Add child to right controler
+	$RightHand.add_child(current_ball)
+	
+	#add_child(current_ball)
 	print("set ball to right hand picked up")
 
 func throw_current_ball():
@@ -34,7 +38,7 @@ func throw_current_ball():
 	
 	# reparent to world
 	var old_position = current_ball.get_global_transform().origin
-	self.remove_child(current_ball)
+	$RightHand.remove_child(current_ball)
 	world.add_child(current_ball)
 	current_ball.translate(old_position)
 	

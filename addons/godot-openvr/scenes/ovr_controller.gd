@@ -46,6 +46,8 @@ func _process(delta):
 		visible = false
 		return
 	
+	# TODO: Leander oder Mandy Generiere Bewegungspunkte Hinstorie für Werfen force Vector ermittlung
+	
 	# always set our world scale, user may end up changing this
 	apply_world_scale()
 	
