@@ -1,28 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://myObjects/Guns/Handgun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://leander/hex_map/board.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World.gd" type="Script" id=5]
-
-[sub_resource type="CubeMesh" id=1]
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.321569, 0.321569, 0.321569, 1 )
-
-[sub_resource type="BoxShape" id=3]
-
-[sub_resource type="PhysicsMaterial" id=4]
-
-[sub_resource type="CylinderMesh" id=5]
-
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0.917647, 0.396078, 0.396078, 1 )
-metallic = 0.14
-
-[sub_resource type="CylinderShape" id=7]
-radius = 0.0497055
-height = 45.2114
 
 [node name="World" type="Spatial"]
 script = ExtResource( 5 )
@@ -33,35 +14,8 @@ transform = Transform( 1, 0, 0, 0, 0.554017, 0.832506, 0, -0.832506, 0.554017, 0
 [node name="board" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21902, 0 )
 
-[node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 13.263, 0, 0, 0, 0.038, 0, 0, 0, 13.784, 0, 0, 0 )
-collision_layer = 3
-collision_mask = 7
-
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67666e-05, 0.227865, -9.11367e-05 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
-shape = SubResource( 3 )
-
 [node name="player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386134, 0.121518, 7.61707 )
-
-[node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 13.271, 0, 0, 0, 0.059, 0, 0, 0, 13.784, 0.000355005, 0.00865889, -0.00125623 )
-collision_layer = 7
-collision_mask = 7
-physics_material_override = SubResource( 4 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="StaticBody"]
-transform = Transform( 0.0480284, 0, 0, 0, 8.71053, 0, 0, 0, 0.0525972, -2.67666e-05, 13.4051, 9.11366e-05 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 7 )
 
 [node name="Gun" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458401, 1.55215, 0 )
