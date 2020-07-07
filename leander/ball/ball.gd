@@ -19,10 +19,11 @@ var picked_up_by = null
 var by_controller : ARVRController = null
 var closest_count = 0
 
-
+var explosion
 
 func _ready():
   current_bounc_count = 0
+  explosion = preload('res://leander/explosions/explosion.tscn')
 
 func _on_ball_body_entered(body):	
 	# Painting Floor Stuff
@@ -37,6 +38,14 @@ func _on_ball_body_entered(body):
 	current_bounc_count += 1
 	
 	if current_bounc_count >= bouncing_count:
+		
+		var current_explosion = explosion.instance()
+		
+		var ball_position = get_global_transform().origin
+		current_explosion.translate(ball_position)
+		
+		get_parent().add_child(current_explosion)
+		
 		if is_instance_valid(self):
 			self.queue_free()
 
