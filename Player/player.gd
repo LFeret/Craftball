@@ -60,24 +60,3 @@ func throw_current_ball():
 	
 	current_ball = null
 	print("throw current ball TODO: Add physics")
-	
-func _get_velocity():
-	var velocity = Vector3(0.0, 0.0, 0.0)
-	var count = velocities.size()
-	
-	if count > 0:
-		for v in velocities:
-			velocity = velocity + v
-		
-		velocity = velocity / count
-	
-	return velocity
-	
-func _process(delta):
-	velocities.push_back((global_transform.origin - last_position) / delta)
-	if velocities.size() > max_samples:
-		velocities.pop_front()
-	
-	last_position = global_transform.origin
-
-
