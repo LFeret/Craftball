@@ -33,30 +33,8 @@ func holds_ball():
 		current_ball = null
 		return false
 
-func set_ball_to_right_hand(ball):
-	current_ball = ball
-	
-	# Add child to right controler
-	$RightHand.add_child(current_ball)
-	
-	#add_child(current_ball)
-	print("set ball to right hand picked up")
+func get_right_controller():
+	return $RightHand
 
-func throw_current_ball():
-	current_ball.sleeping = false
-	
-	# let go of this object (geht nicht wwie geplant. -> pickable Object nutzen)
-	#current_ball.let_go(_get_velocity() * impulse_factor)
-	#current_ball = null
-	
-	# reparent to world
-	var old_position = current_ball.get_global_transform().origin
-	$RightHand.remove_child(current_ball)
-	world.add_child(current_ball)
-	current_ball.translate(old_position)
-	
-	# TODO: Add thrall
-	current_ball.add_force(Vector3(-200,-200,-200), Vector3(0,0,0)) # force, position
-	
-	current_ball = null
-	print("throw current ball TODO: Add physics")
+func set_current_ball(ball):
+	current_ball = ball

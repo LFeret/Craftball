@@ -15,7 +15,7 @@ transform = Transform( 1, 0, 0, 0, 0.554017, 0.832506, 0, -0.832506, 0.554017, 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21902, 0 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386134, 0.121518, 7.61707 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386134, 0.343287, 7.61707 )
 
 [node name="Gun" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458401, 1.55215, 0 )
