@@ -2,6 +2,7 @@ extends ARVROrigin
 
 var current_ball = null
 var world = null
+const ball = preload("res://leander/ball/ball.res")
 
 export var impulse_factor = 1.0
 
@@ -20,6 +21,20 @@ func _ready():
 	last_position = global_transform.origin
 
 # leander stuff
+func _process(delta):
+	
+	# leander stuff: ball_creation Input
+	if Input.is_action_just_pressed("create_ball")  == true:
+		current_ball = ball.instance()
+		current_ball.sleeping = true
+		# Set Ball Position
+		add_child(current_ball)
+		current_ball.pick_up(self, get_right_controller())
+
+	elif holds_ball() and not Input.is_action_pressed("create_ball") == true:
+		current_ball.sleeping = false
+		current_ball.let_go(Vector3(-5,-20,-5))
+
 func set_world(current_world):
 	world = current_world
 
@@ -35,6 +50,3 @@ func holds_ball():
 
 func get_right_controller():
 	return $RightHand
-
-func set_current_ball(ball):
-	current_ball = ball

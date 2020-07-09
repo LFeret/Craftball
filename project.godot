@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 timer="*res://leander/global_timer.gd"
+networking="*res://leander/multiplayer/network.gd"
 
 [gdnative]
 

@@ -29,7 +29,7 @@ func _on_ball_body_entered(body):
 		var ball_position = get_global_transform().origin
 		current_explosion.translate(ball_position)
 		
-		get_parent().add_child(current_explosion)
+		get_parent().get_parent().add_child(current_explosion)
 		
 		if is_instance_valid(self):
 			self.queue_free()
