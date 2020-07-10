@@ -3,6 +3,22 @@ extends RigidBody
 var current_holding = null
 var is_wall = false
 
+# Growing Logic
+var is_growing = false
+var end_height = 15
+var growing_steps = 0.1
+
+func _process(delta):
+	if is_growing:
+		
+		# TODO: for each iteration if and check if delta is 1 for 1 Second
+		# TODO: grow y scal by grwoing_steps til >= end_height
+		# TODO: set is_growing to false and is_wall to true
+		return
+
+func grow():
+	is_growing = true
+
 func set_current_holding(child):
 	current_holding = child
 
@@ -19,8 +35,14 @@ func is_holding(compare):
 		return false
 
 func set_to_wall():
-	set_scale(Vector3(1,200,1))
-	set_translation(Vector3(translation.x, 18.5, translation.z))
+	rescaleYTo(end_height)
+
+func rescaleYTo(value):
+	var new_scale = Vector3(1, value, 1)
+
+	self.set_scale(new_scale)
+	$CollisionShape.set_scale(new_scale)
+
 
 func set_is_wall(set_is_wall):
 	is_wall = set_is_wall
@@ -39,7 +61,7 @@ func paint_self(color):
 		'red':
 			material.albedo_color = Color(1,0,0)
 	
-	$MeshInstance.set_surface_material(0, material)
+	$CollisionShape.get_child(0).set_surface_material(0, material)
 
 func _on_HexTile_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton:
