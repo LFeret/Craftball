@@ -8,5 +8,6 @@ var networking
 func _ready():
 	var networking_script = load("res://leander/multiplayer/network.gd")
 	networking = networking_script.new()
+	get_node("/root/global/").networking = networking
 	add_child(networking)
 	networking.start_server()

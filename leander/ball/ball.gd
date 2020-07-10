@@ -5,10 +5,13 @@ var current_bounc_count:int
 var color = 'red'
 
 var explosion
+var bouncing_sound = null
 
 func _ready():
-  current_bounc_count = 0
-  explosion = preload('res://leander/explosions/explosion.tscn')
+	current_bounc_count = 0
+	explosion = preload('res://leander/explosions/explosion.tscn')
+	bouncing_sound = preload("res://leander/ball/bounce_sound.ogg")
+	get_node("audio").stream = bouncing_sound
 
 func _on_ball_body_entered(body):	
 	# Painting Floor Stuff
@@ -33,6 +36,10 @@ func _on_ball_body_entered(body):
 		
 		if is_instance_valid(self):
 			self.queue_free()
+	else:
+		# play bounce sound
+		get_node("audio").stop()
+		get_node("audio").play(0)
 
 func get_type():
 	return 'ball'

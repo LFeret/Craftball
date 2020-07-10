@@ -17,7 +17,7 @@ var velocities = Array()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	networking = get_parent().get_child(get_parent().get_child_count()-2)
+	networking = get_node("/root/global").networking #get_parent().get_child(get_parent().get_child_count()-2)
 	var arvr_interface = ARVRServer.find_interface("OpenVR")
 	if(arvr_interface and arvr_interface.initialize()):
 		get_viewport().arvr = true

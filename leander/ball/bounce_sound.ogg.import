@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bounce_sound.ogg-69d50ade14586a0a4719fb82b14444be.oggstr"
+
+[deps]
+
+source_file="res://leander/ball/bounce_sound.ogg"
+dest_files=[ "res://.import/bounce_sound.ogg-69d50ade14586a0a4719fb82b14444be.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
