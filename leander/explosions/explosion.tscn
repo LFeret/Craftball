@@ -39,10 +39,10 @@ scale_random = 1.0
 scale_curve = SubResource( 6 )
 color_ramp = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=8]
 
-[sub_resource type="CubeMesh" id=8]
-material = SubResource( 9 )
+[sub_resource type="CubeMesh" id=9]
+material = SubResource( 8 )
 size = Vector3( 0.2, 0.2, 0.2 )
 
 [node name="explosion" type="Spatial"]
@@ -55,9 +55,11 @@ lifetime = 0.5
 explosiveness = 0.5
 visibility_aabb = AABB( -1.40716, -0.772808, -1.26381, 2.81432, 1.54562, 2.52763 )
 process_material = SubResource( 7 )
-draw_pass_1 = SubResource( 8 )
+draw_pass_1 = SubResource( 9 )
 
 [node name="destroy" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="audio" type="AudioStreamPlayer3D" parent="."]
 [connection signal="timeout" from="destroy" to="." method="_on_destroy_timeout"]

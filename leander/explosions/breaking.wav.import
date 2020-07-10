@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/breaking.wav-a29ac5aba7feb5ea17ff9f0c1d71be91.sample"
+
+[deps]
+
+source_file="res://leander/explosions/breaking.wav"
+dest_files=[ "res://.import/breaking.wav-a29ac5aba7feb5ea17ff9f0c1d71be91.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
