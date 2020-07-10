@@ -9,6 +9,9 @@ var current_growth_value = 0
 var end_height = 15
 var growing_steps = 0.5
 
+func ready():
+	end_height = get_node("/root/config").world_height
+
 func _process(delta):
 	if is_growing:
 		var current_value = current_growth_value + growing_steps
@@ -66,13 +69,18 @@ func paint_self(color):
 	
 	$CollisionShape.get_child(0).set_surface_material(0, material)
 
+func flip():
+	rotate_x(deg2rad(180))
+
 func _on_HexTile_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed == true:
 			print("is_wall: " + str(get_is_wall()))
+			print("is_roof: " + str(get_parent().roof))
 			print("Hex Left Mouse Button")
 		if event.button_index == BUTTON_LEFT and event.pressed == false:
 			print("is_wall: " + str(get_is_wall()))
+			print("is_roof: " + str(get_parent().roof))
 			print("Hex Left Mouse Button Release")
 		if event.button_index == BUTTON_RIGHT and event.pressed == true:
 			print("Hex Pressed Right Mouse Button")

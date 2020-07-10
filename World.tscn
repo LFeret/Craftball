@@ -11,7 +11,10 @@ script = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 0.554017, 0.832506, 0, -0.832506, 0.554017, 0, 10.1816, 7.12866 )
 
 [node name="board" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21902, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.210029, 0 )
+
+[node name="roof" parent="." instance=ExtResource( 3 )]
+roof = true
 
 [node name="Gun" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458401, 1.55215, -15.6924 )

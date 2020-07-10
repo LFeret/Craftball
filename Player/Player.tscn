@@ -12,7 +12,7 @@
 script = ExtResource( 4 )
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.934273, 0.356559, 0, -0.356559, 0.934273, 0, 3.28954, 4.29626 )
+transform = Transform( 1, 0, 0, 0, 0.935444, 0.353475, 0, -0.353475, 0.935444, 0, 3.28954, 4.29626 )
 
 [node name="LeftHand" parent="." instance=ExtResource( 2 )]
 script = ExtResource( 7 )
@@ -27,7 +27,6 @@ camera = NodePath("../../ARVRCamera")
 [node name="RightHand" parent="." instance=ExtResource( 2 )]
 controller_id = 2
 script = ExtResource( 6 )
-show_controller_mesh = true
 
 [node name="Function_pointer" parent="RightHand" instance=ExtResource( 1 )]
 
