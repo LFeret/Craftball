@@ -14,6 +14,7 @@ var start_pos:Vector3
 
 var rng
 var hexes = []
+var growable_hexes = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -71,6 +72,8 @@ func create_grid():
 				hex.set_is_wall(true)
 			elif x+2 == grid_w:
 				hex.set_is_wall(true)
+			else:
+				growable_hexes.append(hex)
 
 func setup_map():
 	var i = 0
@@ -81,12 +84,8 @@ func setup_map():
 		i += 1
 
 func grow():
-	var grow_able_hexes = []
-	for hex in hexes:
-		if not hex.get_is_wall() and not hex.is_growing:
-			grow_able_hexes.append(hex)
-			
 	rng.randomize()
-	var size = grow_able_hexes.size()
+	var size = growable_hexes.size()
 	var random_hex_index =  rng.randi_range(0, size-1)
-	grow_able_hexes[random_hex_index].grow()
+	growable_hexes[random_hex_index].grow()
+	growable_hexes.remove(random_hex_index)
