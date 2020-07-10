@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://leander/hex_map/HexGrid.gd" type="Script" id=1]
+[ext_resource path="res://leander/hex_map/board.gd" type="Script" id=2]
 
 [node name="board" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.422618, -0.626678, -0.654728, 6.31553e-08, -0.722412, 0.691463, -0.906308, 0.292224, 0.305304, -14.4267, 13, 9 )

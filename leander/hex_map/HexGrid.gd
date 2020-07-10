@@ -12,11 +12,14 @@ var hex_h:float=2.0
 
 var start_pos:Vector3
 
+var rng
 var hexes = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng = RandomNumberGenerator.new()
 	hex_tile = preload("res://leander/hex_map/HexTile.res")
+	get_node("/root/global").board = self
 	calc_start_pos()
 	create_grid()
 	setup_map()
@@ -76,3 +79,14 @@ func setup_map():
 			hex.set_to_wall()
 		
 		i += 1
+
+func grow():
+	var grow_able_hexes = []
+	for hex in hexes:
+		if not hex.get_is_wall() and not hex.is_growing:
+			grow_able_hexes.append(hex)
+			
+	rng.randomize()
+	var size = grow_able_hexes.size()
+	var random_hex_index =  rng.randi_range(0, size-1)
+	grow_able_hexes[random_hex_index].grow()

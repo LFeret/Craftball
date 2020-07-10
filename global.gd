@@ -5,6 +5,7 @@ extends Node
 
 var world = null
 var networking = null
+var board = null
 
 func _ready():
 	pass

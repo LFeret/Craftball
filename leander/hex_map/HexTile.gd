@@ -5,16 +5,20 @@ var is_wall = false
 
 # Growing Logic
 var is_growing = false
+var current_growth_value = 0
 var end_height = 15
-var growing_steps = 0.1
+var growing_steps = 0.5
 
 func _process(delta):
 	if is_growing:
+		var current_value = current_growth_value + growing_steps
+		rescaleYTo(current_value)
+		current_growth_value = current_value
 		
-		# TODO: for each iteration if and check if delta is 1 for 1 Second
-		# TODO: grow y scal by grwoing_steps til >= end_height
-		# TODO: set is_growing to false and is_wall to true
-		return
+		if current_growth_value >= end_height:
+			rescaleYTo(end_height)
+			is_growing = false
+			is_wall = true
 
 func grow():
 	is_growing = true
@@ -39,7 +43,6 @@ func set_to_wall():
 
 func rescaleYTo(value):
 	var new_scale = Vector3(1, value, 1)
-
 	self.set_scale(new_scale)
 	$CollisionShape.set_scale(new_scale)
 
