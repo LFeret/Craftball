@@ -8,6 +8,9 @@ var networking
 var current_ball = null
 const ball = preload("res://leander/ball/ball.res")
 
+var current_cube = null
+const cube = preload("res://myObjects/Cube.tscn")
+
 export var impulse_factor = 1.0
 
 export var max_samples = 5
@@ -50,7 +53,7 @@ remote func create_ball(id):
 	# maybe get node by player_id is necesseray
 	curr_player.current_ball = ball.instance()
 	curr_player.current_ball.sleeping = true
-	# Set Ball Position
+	#  Ball Position
 	curr_player.add_child(current_ball)
 	curr_player.current_ball.pick_up(self, get_right_controller())
 
@@ -71,3 +74,28 @@ func holds_ball():
 
 func get_right_controller():
 	return $RightHand
+	
+remote func create_cube(id):
+	var curr_player = networking.players[id]
+		
+	# maybe get node by player_id is necesseray
+	curr_player.current_cube = cube.instance()
+	curr_player.current_cube.sleeping = true
+	#  Ball Position
+	curr_player.add_child(current_cube)
+	curr_player.current_cube.pick_up(self, get_right_controller())
+
+remote func let_go_cube(id):
+	var curr_player = networking.players[id]
+	curr_player.current_ball.sleeping = false
+	curr_player.current_ball.let_go(Vector3(-1,-2,-1))
+	
+func holds_cube():
+	if is_instance_valid(current_cube):
+		if current_cube == null:
+			return false
+		else:
+			return true
+	else:
+		current_cube = null
+		return false

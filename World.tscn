@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://myObjects/Guns/Handgun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://leander/hex_map/board.tscn" type="PackedScene" id=3]
+[ext_resource path="res://myObjects/Cube.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World.gd" type="Script" id=5]
 
 [node name="World" type="Spatial"]
@@ -11,10 +13,12 @@ script = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 0.554017, 0.832506, 0, -0.832506, 0.554017, 0, 10.1816, 7.12866 )
 
 [node name="board" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.210029, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21902, 0 )
 
-[node name="roof" parent="." instance=ExtResource( 3 )]
-roof = true
+[node name="player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386134, 0.121518, 7.61707 )
 
 [node name="Gun" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458401, 1.55215, -15.6924 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458401, 1.55215, 0 )
+
+[node name="Cube2" parent="." instance=ExtResource( 4 )]
