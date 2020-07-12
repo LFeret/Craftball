@@ -8,6 +8,8 @@ var networking
 var current_ball = null
 const ball = preload("res://leander/ball/ball.res")
 
+var current_cube = null
+
 export var impulse_factor = 1.0
 
 export var max_samples = 5
