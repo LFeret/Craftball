@@ -20,7 +20,9 @@ run/main_scene="res://World.tscn"
 
 [autoload]
 
+config="*res://config.gd"
 timer="*res://leander/global_timer.gd"
+global="*res://global.gd"
 
 [gdnative]
 

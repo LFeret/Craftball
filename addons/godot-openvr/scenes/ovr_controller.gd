@@ -17,6 +17,8 @@ var components = Array()
 var ws = 0
 
 func _ready():
+	
+
 	# instance our render model object
 	ovr_render_model = preload("res://addons/godot-openvr/OpenVRRenderModel.gdns").new()
 	
@@ -25,6 +27,7 @@ func _ready():
 	
 	# hide to begin with
 	visible = false
+	
 
 func apply_world_scale():
 	var new_ws = ARVRServer.world_scale
@@ -64,3 +67,4 @@ func _process(delta):
 	# make it visible
 	visible = true
 	emit_signal("controller_activated", self)
+
