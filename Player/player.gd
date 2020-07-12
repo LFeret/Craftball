@@ -3,12 +3,14 @@ extends ARVROrigin
 var current_ball = null
 var world = null
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var arvr_interface = ARVRServer.find_interface("OpenVR")
 	if(arvr_interface and arvr_interface.initialize()):
 		get_viewport().arvr = true
 		get_viewport().hdr = false
+
 
 # leander stuff
 func set_world(current_world):

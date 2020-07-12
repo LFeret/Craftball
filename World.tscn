@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://myObjects/Guns/Handgun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://leander/hex_map/board.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player_movement.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World.gd" type="Script" id=5]
+[ext_resource path="res://player_movement.gd" type="Script" id=6]
 
 [node name="World" type="Spatial"]
 script = ExtResource( 5 )
@@ -15,7 +17,11 @@ transform = Transform( 1, 0, 0, 0, 0.554017, 0.832506, 0, -0.832506, 0.554017, 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21902, 0 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.386134, 0.121518, 7.61707 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545184, 0.929892, 9.42252 )
+
+[node name="KinematicBody" parent="player" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0808716, 0.166676, 0.0468426 )
+script = ExtResource( 6 )
 
 [node name="Gun" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458401, 1.55215, 0 )
