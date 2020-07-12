@@ -7,6 +7,7 @@ const SERVER_IP = "127.0.0.1"
 var players = { }
 var self_data = { name = '', position = Vector3(0,0,0)}
 var is_server = true
+
 var player_name
 
 func _ready():

@@ -8,6 +8,7 @@ var location = Vector3()
 var gravity = -10
 var velocity = Vector3()
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -18,12 +19,16 @@ func _ready():
 func _physics_process(delta):
 	location = Vector3(0,0,0)
 	if Input.is_action_just_pressed("ui_left"):
+		print("left click")
 		location.x -= 1
 	if Input.is_action_just_pressed("ui_right"):
+		print("right click")
 		location.x += 1
 	if Input.is_action_just_pressed("ui_up"):
+		print("up click")
 		location.z -= 1
 	if Input.is_action_just_pressed("ui_down"):
+		print("down click")
 		location.z += 1
 	location = location.normalized()
 	location = location*speed*delta
