@@ -4,7 +4,7 @@
 [ext_resource path="res://addons/godot-xr-tools/objects/Object_pickable.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.217647, 0.167042, 0.0571884 )
+extents = Vector3( 0.21672, 0.167042, 0.0571884 )
 
 [node name="Gun2" instance=ExtResource( 2 )]
 collision_layer = 7

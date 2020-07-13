@@ -42,15 +42,16 @@ func button_pressed(button_index):
 func button_released(button_index):
 	 # If the trigger button is released...
 	if get_parent().control:
-		if button_index == 15  and player.holds_ball():
+		if button_index == 15:
 			#player.throw_current_ball()
 			
 			# TODO: use rpc_unreliable("create_ball") # maybe player_id is necessesary to give
 			rpc_unreliable("throw_ball", player.player_id)
 			throw_ball(player.player_id)
 			
-		if button_index == 14 and holds_cube():
-			player.place_current_cube()
+		if button_index == 14:
+			rpc_unreliable("let_go_cube", player.player_id)
+			let_go_cube(player.player_id)
 		
 remote func create_ball(id):
 	var curr_player = networking.players[id]
@@ -85,14 +86,19 @@ remote func create_cube(id):
 	# maybe get node by player_id is necesseray
 	curr_player.current_cube = cube.instance()
 	curr_player.current_cube.sleeping = true
-	#  Ball Position
+	#  Cube Position
 	curr_player.add_child(current_cube)
 	curr_player.current_cube.pick_up(curr_player, self)
 
+
 remote func let_go_cube(id):
 	var curr_player = networking.players[id]
-	curr_player.current_ball.sleeping = false
-	curr_player.current_ball.let_go(Vector3(-1,-2,-1))
+	curr_player.current_cube.sleeping = false
+	curr_player.current_cube.let_go(Vector3(-2,-4,-2))
+	
+	# let go of this object
+	#picked_up_object.let_go(_get_velocity() * impulse_factor)
+
 	
 func holds_cube():
 	if is_instance_valid(current_cube):

@@ -4,7 +4,7 @@ extends Node
 var time = 0
 var timerVar = 0
 
-const start_growing_time = 5 # seconds
+const start_growing_time = 500000000 # seconds
 const growing_rate = 5
 
 func _ready():
