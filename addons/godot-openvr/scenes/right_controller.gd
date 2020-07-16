@@ -89,6 +89,11 @@ func holds_ball():
 func getThrowingForce():
 	if past_position != null and current_position != null:
 		# posible necessery to normalize part and curr position with .normalized()
-		return (past_position + current_position) * 0.5
+		var force = (past_position.origin + current_position.origin) * 0.5
+		force.x = force.x * 10
+		force.y = force.y * 2
+		force.z = force.z * 10
+		
+		return force
 	else:
 		return Vector3(0,0,0)
