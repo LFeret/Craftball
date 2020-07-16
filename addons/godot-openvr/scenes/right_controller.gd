@@ -72,9 +72,9 @@ remote func throw_ball(id):
 	curr_player.current_ball.thrown = true
 	
 	# errechne Richtungs und Kraft Vector
-	var force = getThrowingForce()
+	var force = get_linear_velocity()
 	
-	curr_player.current_ball.let_go(force) # https://docs.godotengine.org/en/3.1/tutorials/3d/fps_tutorial/part_five.html
+	curr_player.current_ball.let_go(force)
 
 func holds_ball():
 	if is_instance_valid(current_ball):
@@ -86,35 +86,28 @@ func holds_ball():
 		current_ball = null
 		return false
 
-func getThrowingForce():
+func get_linear_velocity():
 	if past_position != null and current_position != null:
 		# posible necessery to normalize part and curr position with .normalized()
 		var past_vector = past_position.origin
 		var curr_vector = current_position.origin
 		
-		var force = Vector3(get_x_force(past_vector, curr_vector),get_y_force(past_vector, curr_vector),get_z_force(past_vector, curr_vector))# (past_position.origin + current_position.origin) * 0.5
-		return force
+		var direction = get_direction(past_vector, curr_vector)
+		var force = Vector3(get_force(past_vector.x, curr_vector.x),get_force(past_vector.y, curr_vector.y),get_force(past_vector.z, curr_vector.z))
+		
+		return direction * force # sowas in der Art
 	else:
 		return Vector3(0,0,0)
 
-func get_x_force(vec_1, vec_2):
-	var x_force = 0
-	
-	var x1 = vec_1.x
-	var x2 = vec_2.x
-	
-	if x1 <= x2:
-		# wenn neue Position kleiner ist, muss x ein minus Wert sein!
-		x_force = x2-x1
-	else:
-		x_force = x1-x2
-	
-	return x_force
-	
-func get_y_force(vec_1, vec_2):
-	
-	pass
+func get_direction(past_position, current_position):
+	return (past_position.origin + current_position.origin) * 0.5
 
-func get_z_force(vec_1, vec_2):
+func get_force(point1, point2, force_offset=10):
+	var force = 0
 	
-	pass
+	if point1 <= point2:
+		force = point2-point1
+	else:
+		force = point2-point1
+	
+	return force * force_offset
