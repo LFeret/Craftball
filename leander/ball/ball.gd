@@ -1,4 +1,4 @@
-extends "res://addons/godot-xr-tools/objects/Object_pickable.gd"
+extends "res://leander/ball/ball_pickable.gd"
 
 export var bouncing_count:int
 var current_bounc_count:int
