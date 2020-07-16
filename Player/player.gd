@@ -53,13 +53,13 @@ remote func create_ball(id):
 	curr_player.current_ball = ball.instance()
 	curr_player.current_ball.sleeping = true
 	# Set Ball Position
-	curr_player.add_child(current_ball)
-	curr_player.current_ball.pick_up(self, get_right_controller())
+	curr_player.get_parent().add_child(current_ball)
+	curr_player.current_ball.pick_up(self, self)
 
 remote func throw_ball(id):
 	var curr_player = networking.players[id]
 	curr_player.current_ball.sleeping = false
-	curr_player.current_ball.let_go(Vector3(-5,-20,-5))
+	curr_player.current_ball.let_go()
 
 func holds_ball():
 	if is_instance_valid(current_ball):
