@@ -88,26 +88,35 @@ func holds_ball():
 
 func get_linear_velocity():
 	if past_position != null and current_position != null:
+		return (current_position.origin - past_position.origin) / 0.0166 # 0.0166 --> framerate (time-delta)
+		
+		"""
 		# posible necessery to normalize part and curr position with .normalized()
 		var past_vector = past_position.origin
 		var curr_vector = current_position.origin
 		
 		var direction = get_direction(past_vector, curr_vector)
-		var force = Vector3(get_force(past_vector.x, curr_vector.x),get_force(past_vector.y, curr_vector.y),get_force(past_vector.z, curr_vector.z))
-		
-		return direction * force # sowas in der Art
+		var force = Vector3(
+			get_force(past_vector.x, curr_vector.x, 10000),
+			get_force(past_vector.y, curr_vector.y, 100),
+			get_force(past_vector.z, curr_vector.z, 10000)
+		)
+		print(direction)
+		print(force)
+		return Vector3(direction.x * force.x, direction.y * force.y, direction.z * force.z) # sowas in der Art
+		"""
 	else:
 		return Vector3(0,0,0)
 
 func get_direction(past_position, current_position):
-	return (past_position.origin + current_position.origin) * 0.5
+	return ((past_position.normalized() + current_position.normalized()) * 0.5).normalized()
 
-func get_force(point1, point2, force_offset=10):
+func get_force(point1, point2, force_offset=1000):
 	var force = 0
 	
 	if point1 <= point2:
-		force = point2-point1
+		force = abs(point2)-abs(point1)
 	else:
-		force = point2-point1
+		force = abs(point2)-abs(point1)
 	
 	return force * force_offset

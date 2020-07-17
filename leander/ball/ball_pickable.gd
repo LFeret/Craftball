@@ -92,9 +92,9 @@ func let_go(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
 		collision_layer = 1
 		
 		# set our starting velocity
-		linear_velocity = starting_linear_velocity
+		linear_velocity = starting_linear_velocity * 10
 		
-#		apply_impulse(Vector3(0.0, 0.0, 0.0), impulse)
+		#apply_impulse(Vector3(0.0, 0.0, 0.0), impulse)
 		
 		# we are no longer picked up
 		picked_up_by = null
