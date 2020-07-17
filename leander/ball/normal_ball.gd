@@ -1,9 +1,6 @@
 extends "res://leander/ball/ball.gd"
 
-func _ready():
-	bouncing_count = 5
-
-func _on_speed_ball_body_entered(body):
+func _on_ball_body_entered(body):	
 	# Painting Floor Stuff
 	if body.get_type() == 'HexTile':
 		body.paint_self(color)
@@ -14,9 +11,6 @@ func _on_speed_ball_body_entered(body):
 	
 	# Bouncing Stuff
 	current_bounc_count += 1
-	
-	# TODO: Speed up tests
-	add_force(linear_velocity * 2, Vector3(0,0,0))
 	
 	if current_bounc_count >= bouncing_count:
 		
@@ -34,7 +28,8 @@ func _on_speed_ball_body_entered(body):
 		get_node("audio").stop()
 		get_node("audio").play(0)
 
+func get_type():
+	return 'ball'
 
-func _on_speed_ball_body_exited(body):
-	
-	pass # Replace with function body.
+func _on_ball_body_exited(body):
+	pass
