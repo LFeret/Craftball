@@ -8,6 +8,7 @@ var is_growing = false
 var current_growth_value = 0
 var end_height = 15
 var growing_steps = 0.5
+var current_booster = null
 
 func ready():
 	end_height = get_node("/root/config").world_height
@@ -25,6 +26,11 @@ func _process(delta):
 
 func grow():
 	is_growing = true
+
+func spawn_booster(booster_instance):
+	if not current_booster:
+		current_booster = booster_instance
+		self.add_child(booster_instance)
 
 func set_current_holding(child):
 	current_holding = child
@@ -48,7 +54,6 @@ func rescaleYTo(value):
 	var new_scale = Vector3(1, value, 1)
 	self.set_scale(new_scale)
 	$CollisionShape.set_scale(new_scale)
-
 
 func set_is_wall(set_is_wall):
 	is_wall = set_is_wall

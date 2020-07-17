@@ -17,11 +17,14 @@ var hexes = []
 var growable_hexes = []
 var roof = false
 
+var booster_reg
+
 var roof_height = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	roof_height = get_node("/root/config").world_height
+	booster_reg = get_node("/root/booster_registry")
 	roof = get_parent().roof
 	rng = RandomNumberGenerator.new()
 	hex_tile = preload("res://leander/hex_map/HexTile.res")
@@ -100,8 +103,25 @@ func setup_map():
 		i += 1
 
 func grow():
+	var usable_hex = get_random_usabel_hex(true)
+	usable_hex.grow()
+
+func spawn_booster():
+	var usable_hex = get_random_usabel_hex()
+	
+	usable_hex.spawn_booster(get_random_booster())
+
+func get_random_usabel_hex(remove = false):
 	rng.randomize()
 	var size = growable_hexes.size()
 	var random_hex_index =  rng.randi_range(0, size-1)
-	growable_hexes[random_hex_index].grow()
-	growable_hexes.remove(random_hex_index)
+	var growable_hex = growable_hexes[random_hex_index]
+	if remove:
+		growable_hexes.remove(random_hex_index)
+	return growable_hex
+
+func get_random_booster():
+	rng.randomize()
+	var size = booster_reg.get_booster_count()
+	var random_booster_index = rng.randi_range(0, size-1)
+	return booster_reg.get_booster(random_booster_index)
