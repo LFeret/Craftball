@@ -1,5 +1,8 @@
 extends "res://leander/ball/ball.gd"
 
+func _ready():
+	bouncing_count = 3
+
 func _on_ball_body_entered(body):	
 	# Painting Floor Stuff
 	if body.get_type() == 'HexTile':
