@@ -2,7 +2,7 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 
 # leander stuff
 const ball = preload("res://leander/ball/ball.res")
-var cube = preload("res://myObjects/Cube.tscn")
+const cube = preload("res://myObjects/Cube/Cube.tscn")
 var player = null
 var current_ball = null
 var networking = null
@@ -50,6 +50,7 @@ func button_pressed(button_index):
 		if button_index == 14:
 			rpc_unreliable("create_cube", player.player_id)
 			create_cube(player.player_id)
+			print("Created##########")
 			
 		
 func button_released(button_index):
@@ -61,9 +62,10 @@ func button_released(button_index):
 			# TODO: use rpc_unreliable("create_ball") # maybe player_id is necessesary to give
 			rpc_unreliable("throw_ball", player.player_id)
 			throw_ball(player.player_id)
-		if button_index == 14 and player.holds_cube() || Input.is_action_just_pressed("create_cube")  == true:
+		if button_index == 14: #and holds_cube()
 			rpc_unreliable("let_go_cube", player.player_id)
 			let_go_cube(player.player_id)
+			print("werfen##########")
 		
 remote func create_ball(id):
 	var curr_player = networking.players[id]
@@ -108,14 +110,11 @@ remote func create_cube(id):
 remote func let_go_cube(id):
 	var curr_player = networking.players[id]
 	curr_player.current_cube.sleeping = false
+	curr_player.current_cube.thrown = true
 	
 	# errechne Richtungs und Kraft Vector
 	var force = get_linear_velocity()
-	
 	curr_player.current_cube.let_go(force)
-	
-	current_cube.collision_layer = 1
-	current_cube.collision_mask = 1
 	
 func holds_cube():
 	if is_instance_valid(current_cube):
