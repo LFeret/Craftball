@@ -64,6 +64,7 @@ func pick_up(by, with_controller):
 	collision_layer = 0#picked_up_layer
 	collision_mask = 0
 	
+	
 	# now reparent it
 	var original_transform = global_transform
 	if original_parent:
@@ -83,7 +84,7 @@ func pick_up(by, with_controller):
 
 # we are being let go
 func let_go(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
-	if picked_up_by and thrown:
+	if picked_up_by:
 		# get our current global transform
 		var t = global_transform
 		
@@ -94,8 +95,10 @@ func let_go(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
 		# reposition it and apply impulse
 		global_transform = t
 		mode = RigidBody.MODE_RIGID
-		collision_mask = 1
-		collision_layer = 1
+		
+		# für Bitmaske: die ersten 3 Bits sind auf true gesetzt
+		collision_mask = 7
+		collision_layer = 7
 		
 		# set our starting velocity
 		linear_velocity = starting_linear_velocity * 10
