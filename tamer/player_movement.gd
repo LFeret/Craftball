@@ -18,7 +18,7 @@ func _ready():
 # Tamer stuff
 func _physics_process(delta):
 ####NEW STUFF
-	var left_analog_axis = Vector2(Input.get_joy_axis(0, JOY_AXIS_0)*10, Input.get_joy_axis(0, JOY_AXIS_1)*-10)
+	var left_analog_axis = Vector2(Input.get_joy_axis(0, JOY_AXIS_0)*8, Input.get_joy_axis(0, JOY_AXIS_1)*-8)
 
 	set_rotation(Vector3(0, left_analog_axis.angle(), 0))	
 
