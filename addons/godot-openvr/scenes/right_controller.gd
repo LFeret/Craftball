@@ -2,7 +2,8 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 
 # leander stuff
 const ball = preload("res://leander/ball/ball.res")
-const cube = preload("res://myObjects/Cube/Cube.tscn")
+#const cube = preload("res://myObjects/Cube/Cube.tscn")
+const cube = null
 var player = null
 var current_ball = null
 var networking = null
