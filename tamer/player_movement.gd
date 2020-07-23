@@ -17,6 +17,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # Tamer stuff
 func _physics_process(delta):
+####NEW STUFF
+	var left_analog_axis = Vector2(Input.get_joy_axis(0, JOY_AXIS_0)*10, Input.get_joy_axis(0, JOY_AXIS_1)*-10)
+
+	set_rotation(Vector3(0, left_analog_axis.angle(), 0))	
+
+	if left_analog_axis.length() > 0.25:
+		move_and_slide(Vector3(left_analog_axis.x, 0, left_analog_axis.y))	
+	
+	
+	
+#####OLD 	
 	location = Vector3(0,0,0)
 	if Input.is_action_just_pressed("ui_left"):
 		print("left click")
