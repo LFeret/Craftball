@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+
+[sub_resource type="PrismMesh" id=2]
+left_to_right = 0.9
+
+[node name="Ramp" type="RigidBody"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1.2, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = null

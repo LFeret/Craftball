@@ -25,6 +25,7 @@ func _on_Cube_body_entered(body):
 		elif current_shot_count == 2:
 			self.paint_self(colorFirstShot)
 		elif current_shot_count >= max_shots:
+			"""
 			var current_explosion = explosion.instance()
 		
 			var cube_position = get_global_transform().origin
@@ -34,6 +35,7 @@ func _on_Cube_body_entered(body):
 			
 			if is_instance_valid(self):
 				self.queue_free()
+			"""
 	elif body.get_type() == 'HexTile':
 		# überlegung interaktion mit Boden
 		pass
@@ -45,6 +47,17 @@ func _on_Cube_body_entered(body):
 func _on_Cube_body_exited(body):
 	pass # Replace with function body.
 
+func explode():
+	var current_explosion = explosion.instance()
+		
+	var cube_position = get_global_transform().origin
+	current_explosion.translate(cube_position)
+	
+	get_parent().get_parent().add_child(current_explosion)
+	
+	if is_instance_valid(self):
+		self.queue_free()
+
 func paint_self(color):
 	var material = SpatialMaterial.new()
 	#var material = $MeshInstance.get_surface_material(0)
@@ -55,4 +68,4 @@ func paint_self(color):
 		'yellow':
 			material.albedo_color = Color(1,1,0)
 	
-	$CollisionShape.get_child(0).set_surface_material(0, material)
+	#$CollisionSlhape.get_child(0).set_surface_material(0, material)

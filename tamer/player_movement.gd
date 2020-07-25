@@ -13,6 +13,8 @@ var velocity = Vector3()
 func _ready():
 	pass # Replace with function body.
 
+func get_type():
+	return 'Player'
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # Tamer stuff

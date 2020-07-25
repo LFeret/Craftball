@@ -2,8 +2,8 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 
 # leander stuff
 const ball = preload("res://leander/ball/ball.res")
-#const cube = preload("res://myObjects/Cube/Cube.tscn")
-const cube = null
+const cube = preload("res://myObjects/Cube/Cube.tscn")
+#const cube = null
 var player = null
 var current_ball = null
 var networking = null
@@ -51,7 +51,6 @@ func button_pressed(button_index):
 		if button_index == 14:
 			rpc_unreliable("create_cube", player.player_id)
 			create_cube(player.player_id)
-			print("Created##########")
 			
 		
 func button_released(button_index):
@@ -66,7 +65,6 @@ func button_released(button_index):
 		if button_index == 14: #and holds_cube()
 			rpc_unreliable("let_go_cube", player.player_id)
 			let_go_cube(player.player_id)
-			print("werfen##########")
 		
 remote func create_ball(id):
 	var curr_player = networking.players[id]
