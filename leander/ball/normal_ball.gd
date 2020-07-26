@@ -18,13 +18,8 @@ func _on_ball_body_entered(body):
 		body.queue_free()
 		self.queue_free()
 	elif body.get_type() == 'Cube':
-		current_shot_count += 1
-		if current_shot_count == 1:
-			body.paint_self(colorFirstShot)
-		elif current_shot_count == 2:
-			body.paint_self(colorFirstShot)
-		elif current_shot_count >= max_shots:
-			body.explode()
+		body.count_hit()
+		
 	
 	# Bouncing Stuff
 	current_bounc_count += 1

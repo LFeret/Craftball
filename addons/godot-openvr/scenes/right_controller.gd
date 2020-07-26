@@ -3,6 +3,7 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 # leander stuff
 const ball = preload("res://leander/ball/ball.res")
 const cube = preload("res://myObjects/Cube/Cube.tscn")
+const ramp = preload("res://myObjects/Cube/Ramp.tscn")
 #const cube = null
 var player = null
 var current_ball = null
@@ -98,9 +99,17 @@ func holds_ball():
 		
 remote func create_cube(id):
 	var curr_player = networking.players[id]
-		
+	
+	var trackpad_vector = Vector2(-get_joystick_axis(1), get_joystick_axis(0))
+	print(trackpad_vector)	
+	
 	# maybe get node by player_id is necesseray
 	curr_player.current_cube = cube.instance()
+	if -get_joystick_axis(1) <= 0 and get_joystick_axis(0) >= 0:
+		curr_player.current_cube = ramp.instance()
+	elif -get_joystick_axis(1) >= 0 and get_joystick_axis(0) <= 0:
+		curr_player.current_cube = cube.instance()
+	
 	curr_player.current_cube.sleeping = true
 	#  Cube Position
 	curr_player.get_parent().add_child(current_cube)
@@ -159,3 +168,4 @@ func get_force(point1, point2, force_offset=1000):
 		force = abs(point2)-abs(point1)
 	
 	return force * force_offset
+	
