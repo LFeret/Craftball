@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://myObjects/Cube/Ramp.gd" type="Script" id=1]
+[ext_resource path="res://myObjects/Cube/build_matieral.tres" type="Material" id=2]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="ConvexPolygonShape" id=1]
 
 [sub_resource type="PrismMesh" id=2]
-left_to_right = 0.9
+material = ExtResource( 2 )
+left_to_right = 1.0
 
 [node name="Ramp" type="RigidBody"]
 collision_layer = 7
@@ -16,10 +18,10 @@ center_pickup_on = NodePath("Pickup")
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.00777, 0, 0.699985, 0, 0.7, 0, -1.19997, 0, 0.0045325, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
-transform = Transform( 1, 0, 4.13921e-09, 0, 1, 0, -4.13921e-09, 0, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 4.19095e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 
