@@ -5,8 +5,10 @@ var player_id
 var control = false
 var networking
 
+var current_ball_type = 'normals_balls'
 var current_ball = null
 const ball = preload("res://leander/ball/ball.res")
+const speed_ball = preload("res://leander/ball/speed_ball.res")
 
 var current_cube = null
 
@@ -52,7 +54,11 @@ remote func create_ball(id):
 	var curr_player = networking.players[id]
 	
 	# maybe get node by player_id is necesseray
-	curr_player.current_ball = ball.instance()
+	if curr_player.ball_type == 'speed_ball':
+		curr_player.current_ball = speed_ball.instance()
+	else:
+		curr_player.current_ball = ball.instance()
+		
 	curr_player.current_ball.sleeping = true
 	# Set Ball Position
 	curr_player.get_parent().add_child(current_ball)
@@ -72,6 +78,12 @@ func holds_ball():
 	else:
 		current_ball = null
 		return false
+
+remote func set_ball_type(ball_type):
+	var curr_player = networking.players[player_id]
+	
+	curr_player.ball_type = ball_type
+	# TODO: Instance booster Timer for balls!!
 
 func get_right_controller():
 	return $RightHand

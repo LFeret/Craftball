@@ -10,9 +10,9 @@
 [ext_resource path="res://tamer/player_movement.gd" type="Script" id=8]
 [ext_resource path="res://tamer/BodyMesh_Human.obj" type="ArrayMesh" id=9]
 
-[sub_resource type="Skin" id=2]
-
 [sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="Skin" id=2]
 
 [node name="player" type="ARVROrigin"]
 script = ExtResource( 4 )
@@ -44,13 +44,13 @@ pickup_range = 1.5
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10936, -7.61596 )
 script = ExtResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="player_body"]
-transform = Transform( -0.1, 0, -3.25841e-08, 0, 0.1, 0, 3.25841e-08, 0, -0.1, 0, -1.19086, 0 )
+[node name="CollisionShape" type="CollisionShape" parent="player_body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.368926, 0.205321 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="player_body/CollisionShape"]
+transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 0.167966, 0.370403, -0.268766 )
 mesh = ExtResource( 9 )
 skin = SubResource( 2 )
 skeleton = NodePath("")
 material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="player_body"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.132957, 0.205321 )
-shape = SubResource( 1 )

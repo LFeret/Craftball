@@ -1,15 +1,9 @@
 extends RigidBody
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$rotate_animation.play("rotate")
-
 
 func get_type():
 	return 'booster'
@@ -18,8 +12,12 @@ func get_power_up():
 	return 'speed_ball'
 
 func _on_booster_body_entered(body):
-	pass # Replace with function body.
-
+	if body.get_type() == 'Player':
+		body.pick_up_booster(get_power_up())
+	elif body.get_type() == 'Cube':
+		pass
+	elif body.get_type() == 'ball':
+		pass
 
 func _on_booster_body_exited(body):
 	pass # Replace with function body.
