@@ -110,7 +110,8 @@ func holds_ball():
 func setup_timer(time_in_seconds, type):
 	current_timer = timer.instance()
 	current_timer.setup_timer(time_in_seconds, type, player)
-	self.add_child(current_timer)
+	if self.get_child_count() <= 3:
+		self.add_child(current_timer)
 
 remote func create_cube(id):
 	var curr_player = networking.players[id]

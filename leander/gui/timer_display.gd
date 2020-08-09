@@ -13,10 +13,11 @@ func setup_timer(timeout, type, player):
 	current_type = type
 	current_player = player
 	current_timeout = timeout
-	
+	$Timer.autostart = true
 	$Timer.start()
 
 func _on_Timer_timeout():
+	print('timeout')
 	current_time += 1
 	
 	if current_time > current_timeout:
