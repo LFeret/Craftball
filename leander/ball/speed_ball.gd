@@ -1,7 +1,7 @@
 extends "res://leander/ball/ball.gd"
 
 func _ready():
-	bouncing_count = 5
+	bouncing_count = 6
 
 func _on_speed_ball_body_entered(body):
 	# Painting Floor Stuff
@@ -11,12 +11,17 @@ func _on_speed_ball_body_entered(body):
 		# TODO: Particle explosion!
 		body.queue_free()
 		self.queue_free()
+	elif body.get_type() == 'Cube':
+		body.count_hit()
+	elif body.get_type() == 'booster':
+		current_player.pick_up_booster(body.get_power_up())
+		body.queue_free()
 	
 	# Bouncing Stuff
 	current_bounc_count += 1
 	
 	# TODO: Speed up tests
-	add_force(linear_velocity * 2, Vector3(0,0,0))
+	add_force(linear_velocity * 50, Vector3(0,0,0))
 	
 	if current_bounc_count >= bouncing_count:
 		
@@ -34,6 +39,8 @@ func _on_speed_ball_body_entered(body):
 		get_node("audio").stop()
 		get_node("audio").play(0)
 
+func get_type():
+	return 'ball'
 
 func _on_speed_ball_body_exited(body):
 	

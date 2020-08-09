@@ -5,7 +5,7 @@ var player_id
 var control = false
 var networking
 
-var current_ball_type = 'normals_balls'
+var current_ball_type = 'normal_ball'
 var current_ball = null
 const ball = preload("res://leander/ball/ball.res")
 const speed_ball = preload("res://leander/ball/speed_ball.res")
@@ -79,11 +79,16 @@ func holds_ball():
 		current_ball = null
 		return false
 
+remote func pick_up_booster(booster_type):
+	if booster_type == 'speed_ball':
+		set_ball_type('speed_ball')
+
 remote func set_ball_type(ball_type):
 	var curr_player = networking.players[player_id]
 	
-	curr_player.ball_type = ball_type
-	# TODO: Instance booster Timer for balls!!
+	curr_player.current_ball_type = ball_type
+	
+	$RightHand.setup_timer(30, 'ball')
 
 func get_right_controller():
 	return $RightHand

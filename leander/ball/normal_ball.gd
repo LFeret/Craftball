@@ -19,7 +19,9 @@ func _on_ball_body_entered(body):
 		self.queue_free()
 	elif body.get_type() == 'Cube':
 		body.count_hit()
-		
+	elif body.get_type() == 'booster':
+		current_player.pick_up_booster(body.get_power_up())
+		body.queue_free()
 	
 	# Bouncing Stuff
 	current_bounc_count += 1

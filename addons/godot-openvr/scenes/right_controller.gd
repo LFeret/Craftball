@@ -2,6 +2,8 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 
 # leander stuff
 const ball = preload("res://leander/ball/ball.res")
+const speed_ball = preload("res://leander/ball/speed_ball.res")
+const timer = preload("res://leander/gui/timer_display.tscn")
 const cube = preload("res://myObjects/Cube/Cube.tscn")
 const ramp = preload("res://myObjects/Cube/Ramp.tscn")
 #const cube = null
@@ -11,6 +13,7 @@ var networking = null
 var past_position = null
 var current_position = null
 var current_cube = null
+var current_timer = null
 
 func _process(delta):
 	# position logging - for throwing // leander stuff
@@ -70,8 +73,14 @@ func button_released(button_index):
 remote func create_ball(id):
 	var curr_player = networking.players[id]
 	
+	match curr_player.current_ball_type:
+		'normal_ball':
+			curr_player.current_ball = ball.instance()
+		'speed_ball':
+			curr_player.current_ball = speed_ball.instance()
+	
 	# maybe get node by player_id is necesseray
-	curr_player.current_ball = ball.instance()
+	
 	curr_player.current_ball.sleeping = true
 	# Set Ball Position
 	curr_player.get_parent().add_child(current_ball)
@@ -81,6 +90,7 @@ remote func throw_ball(id):
 	var curr_player = networking.players[id]
 	curr_player.current_ball.sleeping = false
 	curr_player.current_ball.thrown = true
+	curr_player.current_ball.current_player = curr_player
 	
 	# errechne Richtungs und Kraft Vector
 	var force = get_linear_velocity()
@@ -96,7 +106,13 @@ func holds_ball():
 	else:
 		current_ball = null
 		return false
-		
+
+func setup_timer(time_in_seconds, type):
+	current_timer = timer.instance()
+	self.add_child(current_timer)
+
+	
+
 remote func create_cube(id):
 	var curr_player = networking.players[id]
 	
