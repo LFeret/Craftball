@@ -68,3 +68,6 @@ func paint_self(color):
 	$CollisionShape.get_child(0).set_surface_material(0, material)
 
 
+
+
+

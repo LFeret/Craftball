@@ -29,7 +29,6 @@ transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
-transform = Transform( 0.98398, 0, 0, 0, 0.98398, 0, 0, 0, 0.98398, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = ExtResource( 2 )
 [connection signal="body_entered" from="." to="." method="_on_Cube_body_entered"]
