@@ -120,6 +120,7 @@ remote func create_cube(id):
 	print(trackpad_vector)	
 	
 	# Würfel oder Rape erzeugen
+	curr_player.current_cube = cube.instance()
 	if -get_joystick_axis(1) <= 0 and get_joystick_axis(0) >= 0:
 		curr_player.current_cube = ramp.instance()
 	elif -get_joystick_axis(1) >= 0 and get_joystick_axis(0) <= 0:
