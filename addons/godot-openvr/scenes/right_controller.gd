@@ -119,8 +119,7 @@ remote func create_cube(id):
 	var trackpad_vector = Vector2(-get_joystick_axis(1), get_joystick_axis(0))
 	print(trackpad_vector)	
 	
-	# maybe get node by player_id is necesseray
-	curr_player.current_cube = cube.instance()
+	# Würfel oder Rape erzeugen
 	if -get_joystick_axis(1) <= 0 and get_joystick_axis(0) >= 0:
 		curr_player.current_cube = ramp.instance()
 	elif -get_joystick_axis(1) >= 0 and get_joystick_axis(0) <= 0:
