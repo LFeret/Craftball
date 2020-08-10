@@ -27,7 +27,7 @@ transform = Transform( 0.00777, 0, 0.699985, 0, 0.7, 0, -1.19997, 0, 0.0045325, 
 shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape2"]
-transform = Transform( 1, 0, 4.19095e-09, 0, 1, 0, -9.31323e-10, 0, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 4.19095e-09, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 [connection signal="body_entered" from="." to="." method="_on_Ramp_body_entered"]

@@ -35,9 +35,7 @@ func _on_Cube_body_entered(body):
 		# überlegung interaktion mit Boden
 		pass
 	elif body.get_type() == "Cube":
-		#print(body.get_type())
-		# überlegung interaktion mit Cube
-		pass
+		var test
 	elif body.get_type() == "Ball":
 		print(body.get_type())
 
