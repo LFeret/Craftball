@@ -1,30 +1,56 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_pointer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_controller.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Pickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/player.gd" type="Script" id=4]
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Teleport.tscn" type="PackedScene" id=5]
+[ext_resource path="res://tamer/BodyMesh_Human.obj" type="ArrayMesh" id=9]
+
+[sub_resource type="Skin" id=1]
+
+[sub_resource type="CapsuleShape" id=2]
 
 [node name="player" type="ARVROrigin"]
 script = ExtResource( 4 )
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.934273, 0.356559, 0, -0.356559, 0.934273, 0, 3.28954, 4.29626 )
+transform = Transform( 0.999871, -0.00191986, -0.0159516, 0.00380303, 0.992902, 0.118878, 0.0156102, -0.118924, 0.992781, 0, 2.49389, 0.440249 )
 
 [node name="LeftHand" parent="." instance=ExtResource( 2 )]
+script = null
 
 [node name="Function_pointer" parent="LeftHand" instance=ExtResource( 1 )]
 
 [node name="Function_Teleport" parent="LeftHand" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033844, 0.0891487, 0.0141463 )
 collision_layer = 3
 collision_mask = 3
-camera = NodePath("../../ARVRCamera")
 
 [node name="RightHand" parent="." instance=ExtResource( 2 )]
 controller_id = 2
+script = null
 
 [node name="Function_pointer" parent="RightHand" instance=ExtResource( 1 )]
 
 [node name="Function_Pickup" parent="RightHand" instance=ExtResource( 3 )]
-pickup_range = 10.0
+pickup_range = 1.5
+
+[node name="player_body" type="KinematicBody" parent="RightHand"]
+transform = Transform( 1, 0, 0, -1.16415e-10, 1, 0, 0, 0, 1, 1.49012e-08, 1.16061, -7.45876 )
+
+[node name="Target" type="Spatial" parent="RightHand/player_body"]
+
+[node name="Camera" type="Camera" parent="RightHand/player_body/Target"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.762075, 5.20403 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RightHand/player_body"]
+transform = Transform( -0.0999729, -0.00232631, -3.25753e-08, -0.00232631, 0.0999729, -7.58009e-10, 3.25841e-08, 0, -0.1, 0, -1.19086, 3.0564 )
+mesh = ExtResource( 9 )
+skin = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="RightHand/player_body"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.132957, 3.15918 )
+shape = SubResource( 2 )
