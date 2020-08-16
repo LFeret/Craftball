@@ -1,5 +1,11 @@
 extends "res://leander/ball/ball.gd"
 
+export var max_shots:int
+var current_shot_count:int
+
+var colorFirstShot = 'yellow'
+var colorSecondShot = 'red'
+
 func _ready():
 	bouncing_count = 3
 
@@ -11,6 +17,11 @@ func _on_ball_body_entered(body):
 		# TODO: Particle explosion!
 		body.queue_free()
 		self.queue_free()
+	elif body.get_type() == 'Cube':
+		body.count_hit()
+	elif body.get_type() == 'booster':
+		current_player.pick_up_booster(body.get_power_up())
+		body.queue_free()
 	
 	# Bouncing Stuff
 	current_bounc_count += 1

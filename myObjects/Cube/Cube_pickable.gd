@@ -46,6 +46,27 @@ func drop_and_free():
 
 # we are being picked up by...
 func pick_up(by, with_controller):
+	var collidingBodies = self.get_colliding_bodies()
+	for body in collidingBodies:
+		var type = body.get_type()
+		if body.get_type() == "Cube":
+			# Todo Hier die Logik einbauen da ein Cube nicht aufhebar ist
+			# Testen wenn das Laufen eingefügt ist
+			
+			var bodyPos = body.translation
+			var selfPos = self.translation
+			var distanceX = self.translation.x - body.translation.x
+			var distanceY = self.translation.y - body.translation.y
+			var distanceZ = self.translation.z - body.translation.z
+			#quadratrechnung verwenden ? lieber nicht
+			
+			#vil nnur abbrechen des Pickups wenn möglich, statt mode abändern
+			#self.set_mode(1)
+			#var bodyMode = self.get_mode() 
+			# self.translation.x
+			var test
+	
+	
 	if thrown:
 		thrown = false
 	
@@ -68,7 +89,7 @@ func pick_up(by, with_controller):
 	# now reparent it
 	var original_transform = global_transform
 	if original_parent:
-		original_parent.remove_child(self)
+		original_parent.get_parent().remove_child(self)
 	picked_up_by.add_child(self)
 	
 	if reset_transform_on_pickup:
@@ -90,11 +111,12 @@ func let_go(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
 		
 		# reparent it
 		picked_up_by.remove_child(self)
-		original_parent.add_child(self)
+		original_parent.get_parent().add_child(self)
 		
 		# reposition it and apply impulse
 		global_transform = t
 		mode = RigidBody.MODE_RIGID
+		# reposition it and apply impulse
 		
 		# für Bitmaske: die ersten 3 Bits sind auf true gesetzt
 		collision_mask = 7

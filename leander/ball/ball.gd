@@ -3,6 +3,7 @@ extends "res://leander/ball/ball_pickable.gd"
 export var bouncing_count:int
 var current_bounc_count:int
 var color = 'red'
+var current_player = null
 
 var explosion
 var bouncing_sound = null

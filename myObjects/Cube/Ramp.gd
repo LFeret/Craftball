@@ -28,19 +28,6 @@ func count_hit():
 	elif current_shot_count >= max_shots:
 		explode()
 
-func _on_Cube_body_entered(body):
-	
-	if body.get_type() == 'HexTile':
-		#print(body.get_type())
-		# überlegung interaktion mit Boden
-		pass
-	elif body.get_type() == "Cube":
-		var test
-	elif body.get_type() == "Ball":
-		print(body.get_type())
-
-func _on_Cube_body_exited(body):
-	pass # Replace with function body.
 
 func explode():
 	var current_explosion = explosion.instance()
@@ -68,4 +55,14 @@ func paint_self(color):
 
 
 
-
+func _on_Ramp_body_entered(body):
+	if body.get_type() == 'HexTile':
+		#print(body.get_type())
+		# überlegung interaktion mit Boden
+		pass
+	elif body.get_type() == "Cube":
+		#print(body.get_type())
+		# überlegung interaktion mit Cube
+		pass
+	elif body.get_type() == "Ball":
+		print(body.get_type())

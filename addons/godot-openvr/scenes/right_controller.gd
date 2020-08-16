@@ -2,14 +2,18 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 
 # leander stuff
 const ball = preload("res://leander/ball/ball.res")
-#const cube = preload("res://myObjects/Cube/Cube.tscn")
-const cube = null
+const speed_ball = preload("res://leander/ball/speed_ball.res")
+const timer = preload("res://leander/gui/timer_display.tscn")
+const cube = preload("res://myObjects/Cube/Cube.tscn")
+const ramp = preload("res://myObjects/Cube/Ramp.tscn")
+#const cube = null
 var player = null
 var current_ball = null
 var networking = null
 var past_position = null
 var current_position = null
 var current_cube = null
+var current_timer = null
 
 func _process(delta):
 	# position logging - for throwing // leander stuff
@@ -51,7 +55,6 @@ func button_pressed(button_index):
 		if button_index == 14:
 			rpc_unreliable("create_cube", player.player_id)
 			create_cube(player.player_id)
-			print("Created##########")
 			
 		
 func button_released(button_index):
@@ -66,13 +69,18 @@ func button_released(button_index):
 		if button_index == 14: #and holds_cube()
 			rpc_unreliable("let_go_cube", player.player_id)
 			let_go_cube(player.player_id)
-			print("werfen##########")
 		
 remote func create_ball(id):
 	var curr_player = networking.players[id]
 	
+	match curr_player.current_ball_type:
+		'normal_ball':
+			curr_player.current_ball = ball.instance()
+		'speed_ball':
+			curr_player.current_ball = speed_ball.instance()
+	
 	# maybe get node by player_id is necesseray
-	curr_player.current_ball = ball.instance()
+	
 	curr_player.current_ball.sleeping = true
 	# Set Ball Position
 	curr_player.get_parent().add_child(current_ball)
@@ -82,6 +90,7 @@ remote func throw_ball(id):
 	var curr_player = networking.players[id]
 	curr_player.current_ball.sleeping = false
 	curr_player.current_ball.thrown = true
+	curr_player.current_ball.current_player = curr_player
 	
 	# errechne Richtungs und Kraft Vector
 	var force = get_linear_velocity()
@@ -97,12 +106,26 @@ func holds_ball():
 	else:
 		current_ball = null
 		return false
-		
+
+func setup_timer(time_in_seconds, type):
+	current_timer = timer.instance()
+	current_timer.setup_timer(time_in_seconds, type, player)
+	if self.get_child_count() <= 3:
+		self.add_child(current_timer)
+
 remote func create_cube(id):
 	var curr_player = networking.players[id]
-		
-	# maybe get node by player_id is necesseray
+	
+	var trackpad_vector = Vector2(-get_joystick_axis(1), get_joystick_axis(0))
+	print(trackpad_vector)	
+	
+	# Würfel oder Rape erzeugen
 	curr_player.current_cube = cube.instance()
+	if -get_joystick_axis(1) <= 0 and get_joystick_axis(0) >= 0:
+		curr_player.current_cube = ramp.instance()
+	elif -get_joystick_axis(1) >= 0 and get_joystick_axis(0) <= 0:
+		curr_player.current_cube = cube.instance()
+	
 	curr_player.current_cube.sleeping = true
 	#  Cube Position
 	curr_player.get_parent().add_child(current_cube)
@@ -161,3 +184,4 @@ func get_force(point1, point2, force_offset=1000):
 		force = abs(point2)-abs(point1)
 	
 	return force * force_offset
+	
