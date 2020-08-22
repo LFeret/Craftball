@@ -49,7 +49,7 @@ func paint_self(color):
 			material.albedo_color = Color(1,0,0)
 		'yellow':
 			material.albedo_color = Color(1,1,0)
-	
+
 	$CollisionShape.get_child(0).set_surface_material(0, material)
 
 
