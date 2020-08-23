@@ -45,6 +45,7 @@ func hit():
 func die():
 	get_node("/root/global/").networking.player_died(player_id)
 	self.queue_free()
+	print("you diiiied!!!! Dont hit yourself xD")
 
 # leander stuff
 func _process(delta):

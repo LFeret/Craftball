@@ -1,7 +1,7 @@
 extends Node
 
 const SERVER_PORT = 31400
-const MAX_PLAYERS = 2
+const MAX_PLAYERS = 4
 const SERVER_IP = "127.0.0.1"
 
 var players = { }
@@ -13,12 +13,8 @@ var player_name
 var player_color = [
 	'red',
 	'blue',
-	'greeb',
+	'green',
 	'yellow'
-]
-
-var given_color = [
-	
 ]
 
 var rng
@@ -115,6 +111,7 @@ func spawn_player(id):
 	var curr_color = player_color[random_color_index]
 	
 	player.set_color(curr_color)
+	player_color.remove(random_color_index)
 	
 	if id == get_tree().get_network_unique_id():
 		# Spieler ist nur der Netzwerk Meister des eigenen Characters für Input Controls
