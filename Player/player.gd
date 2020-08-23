@@ -29,6 +29,7 @@ func _ready():
 		get_viewport().hdr = false
 		
 	last_position = global_transform.origin
+	
 
 func set_name(name):
 	# wird vom Multiplayer gestarted, sobald sich ein client verbindet!

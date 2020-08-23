@@ -7,10 +7,13 @@ var colorFirstShot = 'yellow'
 var colorSecondShot = 'red'
 
 var explosion
+var cube_sound
 
 func _ready():
 	max_shots = 3
 	explosion = preload('res://leander/explosions/explosion.tscn')
+	cube_sound = preload("res://myObjects/Cube/car_door_close_1.wav")
+	$audio.stream = cube_sound
 	#set_contact_monitor(true)
 	#set_max_contacts_reported(99999999)
 
@@ -31,11 +34,10 @@ func count_hit():
 func _on_Cube_body_entered(body):
 	
 	if body.get_type() == 'HexTile':
-		#print(body.get_type())
-		# überlegung interaktion mit Boden
-		pass
+		$audio.play(0)
 	elif body.get_type() == "Cube":
-		var test
+		#$audio.play(0)
+		pass
 	elif body.get_type() == "Ball":
 		print(body.get_type())
 

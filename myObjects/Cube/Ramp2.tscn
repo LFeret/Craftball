@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://myObjects/Cube/Ramp.gd" type="Script" id=1]
+[ext_resource path="res://myObjects/Cube/build_matieral.tres" type="Material" id=2]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( 0, 0, 0, 0.7, 0, 0, 0.7, 0, -1.3, 0, 0, -1.3, 0.7, 0.7, -1.3, 0, 0.7, -1.3 )
+
+[sub_resource type="PrismMesh" id=2]
+material = ExtResource( 2 )
+
+[node name="Ramp" type="RigidBody"]
+collision_layer = 7
+collision_mask = 7
+mass = 2.0
+gravity_scale = 3.0
+contacts_reported = 100
+contact_monitor = true
+script = ExtResource( 1 )
+center_pickup_on = NodePath("Pickup")
+
+[node name="Pickup" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304868, 1.78216 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 2.472, 0, 0, 0, 2.186, 0, 0, 0, 2.436, -0.901, 0, 1.084 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+transform = Transform( 0, 0, 0.353, 0, 0.353, 0, -0.64, -0.311, 0, 0.348, 0.345, -0.965 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="audio" type="AudioStreamPlayer3D" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_Ramp_body_entered"]

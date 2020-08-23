@@ -6,7 +6,7 @@ const speed_ball = preload("res://leander/ball/speed_ball.res")
 const block_ball = preload("res://leander/ball/block_ball.res")
 const timer = preload("res://leander/gui/timer_display.tscn")
 const cube = preload("res://myObjects/Cube/Cube.tscn")
-const ramp = preload("res://myObjects/Cube/Ramp.tscn")
+const ramp = preload("res://myObjects/Cube/Ramp2.tscn")
 #const cube = null
 var player = null
 var current_ball = null
@@ -15,6 +15,7 @@ var past_position = null
 var current_position = null
 var current_cube = null
 var current_timer = null
+
 
 func _process(delta):
 	# position logging - for throwing // leander stuff
@@ -25,6 +26,8 @@ func _process(delta):
 	else:
 		past_position = current_position
 		current_position = global_transform # controler right now
+		
+
 	
 func _ready():	
 	networking = get_node("/root/global").networking #get_parent().get_child(get_parent().get_child_count()-2)
@@ -118,10 +121,7 @@ func setup_timer(time_in_seconds, type):
 
 remote func create_cube(id):
 	var curr_player = networking.players[id]
-	
-	var trackpad_vector = Vector2(-get_joystick_axis(1), get_joystick_axis(0))
-	print(trackpad_vector)	
-	
+		
 	# Würfel oder Rape erzeugen
 	curr_player.current_cube = cube.instance()
 	if -get_joystick_axis(1) <= 0 and get_joystick_axis(0) >= 0:

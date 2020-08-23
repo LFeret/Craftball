@@ -58,7 +58,11 @@ func pick_up(by, with_controller):
 			var distanceX = self.translation.x - body.translation.x
 			var distanceY = self.translation.y - body.translation.y
 			var distanceZ = self.translation.z - body.translation.z
+			
+			#var quadrat = fmod(pow(2, distanceY), 23)
 			#quadratrechnung verwenden ? lieber nicht
+			if (distanceY < -1.45 && distanceY > -1.55):
+				return # Bricht die Auführung ab und der Würfel gheht nicht aufheben
 			
 			#vil nnur abbrechen des Pickups wenn möglich, statt mode abändern
 			#self.set_mode(1)
