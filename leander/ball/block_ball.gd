@@ -1,7 +1,9 @@
 extends "res://leander/ball/ball.gd"
 
+const cube_script = preload("res://myObjects/Cube/Cube.tscn")
+
 func _ready():
-	bouncing_count = 6
+	bouncing_count = 3
 
 func _on_speed_ball_body_entered(body):
 	# Painting Floor Stuff
@@ -20,7 +22,12 @@ func _on_speed_ball_body_entered(body):
 	# Bouncing Stuff
 	current_bounc_count += 1
 	
-	add_force(linear_velocity * 50, Vector3(0,0,0))
+	# TODO: Create Cube!
+	var curr_cube = cube_script.instance()
+	var localTranslate = Vector3(0,0,2)
+	curr_cube.translate(curr_cube.get_transform().basis.xform(localTranslate))
+	# curr_cube.translate(localTranslate)
+	get_parent().add_child(curr_cube)
 	
 	if current_bounc_count >= bouncing_count:
 		

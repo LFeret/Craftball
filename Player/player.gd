@@ -80,8 +80,11 @@ func holds_ball():
 		return false
 
 remote func pick_up_booster(booster_type):
-	if booster_type == 'speed_ball':
-		set_ball_type('speed_ball')
+	match booster_type:
+		'speed_ball':
+			set_ball_type('speed_ball')
+		'block_ball':
+			set_ball_type('block_ball')
 
 remote func set_ball_type(ball_type):
 	var curr_player = networking.players[player_id]

@@ -3,6 +3,7 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 # leander stuff
 const ball = preload("res://leander/ball/ball.res")
 const speed_ball = preload("res://leander/ball/speed_ball.res")
+const block_ball = preload("res://leander/ball/block_ball.res")
 const timer = preload("res://leander/gui/timer_display.tscn")
 const cube = preload("res://myObjects/Cube/Cube.tscn")
 const ramp = preload("res://myObjects/Cube/Ramp.tscn")
@@ -78,6 +79,8 @@ remote func create_ball(id):
 			curr_player.current_ball = ball.instance()
 		'speed_ball':
 			curr_player.current_ball = speed_ball.instance()
+		'block_ball':
+			curr_player.current_ball = block_ball.instance()
 	
 	# maybe get node by player_id is necesseray
 	
@@ -153,22 +156,6 @@ func holds_cube():
 func get_linear_velocity():
 	if past_position != null and current_position != null:
 		return (current_position.origin - past_position.origin) / 0.0166 # 0.0166 --> framerate (time-delta)
-		
-		"""
-		# posible necessery to normalize part and curr position with .normalized()
-		var past_vector = past_position.origin
-		var curr_vector = current_position.origin
-		
-		var direction = get_direction(past_vector, curr_vector)
-		var force = Vector3(
-			get_force(past_vector.x, curr_vector.x, 10000),
-			get_force(past_vector.y, curr_vector.y, 100),
-			get_force(past_vector.z, curr_vector.z, 10000)
-		)
-		print(direction)
-		print(force)
-		return Vector3(direction.x * force.x, direction.y * force.y, direction.z * force.z) # sowas in der Art
-		"""
 	else:
 		return Vector3(0,0,0)
 
