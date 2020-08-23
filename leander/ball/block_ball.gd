@@ -21,14 +21,7 @@ func _on_speed_ball_body_entered(body):
 	
 	# Bouncing Stuff
 	current_bounc_count += 1
-	
-	# TODO: Create Cube!
-	var curr_cube = cube_script.instance()
-	var localTranslate = Vector3(0,0,2)
-	curr_cube.translate(curr_cube.get_transform().basis.xform(localTranslate))
-	# curr_cube.translate(localTranslate)
-	get_parent().add_child(curr_cube)
-	
+
 	if current_bounc_count >= bouncing_count:
 		
 		var current_explosion = explosion.instance()
@@ -36,7 +29,11 @@ func _on_speed_ball_body_entered(body):
 		var ball_position = get_global_transform().origin
 		current_explosion.translate(ball_position)
 		
+		var curr_cube = cube_script.instance()
+		curr_cube.translate(ball_position)
+		
 		get_parent().get_parent().add_child(current_explosion)
+		get_parent().get_parent().add_child(curr_cube)
 		
 		if is_instance_valid(self):
 			self.queue_free()

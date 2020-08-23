@@ -9,7 +9,7 @@ func get_type():
 	return 'booster'
 
 func get_power_up():
-	return 'speed_ball'
+	return 'block_ball'
 
 func _on_booster_body_entered(body):
 	if body.get_type() == 'Player':
