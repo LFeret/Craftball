@@ -18,6 +18,8 @@ func _on_speed_ball_body_entered(body):
 	elif body.get_type() == 'booster':
 		current_player.pick_up_booster(body.get_power_up())
 		body.queue_free()
+	elif body.get_type() == 'Player':
+		body.hit()
 	
 	# Bouncing Stuff
 	current_bounc_count += 1

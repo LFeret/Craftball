@@ -19,6 +19,9 @@ func _ready():
 func get_type():
 	return 'Player'
 
+func hit():
+	self.get_parent().hit()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 # Tamer stuff
 func _physics_process(delta):

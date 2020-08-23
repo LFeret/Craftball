@@ -4,11 +4,13 @@ var player_name
 var player_id
 var control = false
 var networking
+var color = ''
 
 var current_ball_type = 'normal_ball'
 var current_ball = null
 const ball = preload("res://leander/ball/ball.res")
 const speed_ball = preload("res://leander/ball/speed_ball.res")
+export var life = 5
 
 var current_cube = null
 
@@ -35,6 +37,14 @@ func set_name(name):
 	# wird vom Multiplayer gestarted, sobald sich ein client verbindet!
 	player_name = name
 
+func hit():
+	life -= 1
+	if life <= 0:
+		self.die()
+
+func die():
+	get_node("/root/global/").networking.player_died(player_id)
+	self.queue_free()
 
 # leander stuff
 func _process(delta):
@@ -96,3 +106,6 @@ remote func set_ball_type(ball_type):
 
 func get_right_controller():
 	return $RightHand
+
+func set_color(color) -> void:
+	self.color = color

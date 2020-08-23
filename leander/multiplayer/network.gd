@@ -10,12 +10,26 @@ var is_server = true
 
 var player_name
 
+var player_color = [
+	'red',
+	'blue',
+	'greeb',
+	'yellow'
+]
+
+var given_color = [
+	
+]
+
+var rng
+
 func _ready():
 	get_tree().connect('network_peer_connected', self, '_player_connected')
 	get_tree().connect('network_peer_disconnected', self, '_player_disconnected')
 	get_tree().connect('connected_to_server', self, '_connected_ok')
 	get_tree().connect('connection_failed', self, '_connected_fail')
 	get_tree().connect('server_disconnected', self, '_server_disconnect')
+	rng = RandomNumberGenerator.new()
 
 func start_server():
 	player_name = "Server"
@@ -95,6 +109,13 @@ func spawn_player(id):
 	player.set_name(str(id))
 	player.translate(Vector3(0,2,0))
 	
+	rng.randomize()
+	var size = len(player_color)
+	var random_color_index = rng.randi_range(0, size-1)
+	var curr_color = player_color[random_color_index]
+	
+	player.set_color(curr_color)
+	
 	if id == get_tree().get_network_unique_id():
 		# Spieler ist nur der Netzwerk Meister des eigenen Characters für Input Controls
 		player.set_network_master(id)
@@ -118,3 +139,27 @@ func terminate_networking():
 
 func prevent_new_connections():
 	get_tree().set_refuse_new_network_connection(true)
+
+func player_died(id):
+	rpc("r_player_died", id)
+
+remote func r_player_died(id):
+	var dead_player = players[id]
+	var message = ''
+	
+	dead_player.queue_free()
+	players.erase(id)
+	
+	if len(players) <= 1:
+		if len(players) < 1:
+			message = 'You were alone and killed yourself and therefore lost!'
+		else:
+			var survived_player = players[0]
+			if survived_player.control:
+				message = 'You have won'
+			else:
+				message = "You have lost"
+		self.game_end(message)
+
+func game_end(message):
+	print(message)
