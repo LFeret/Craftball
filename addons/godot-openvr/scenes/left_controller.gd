@@ -105,10 +105,10 @@ func _process(delta):
 				# Rotating
 				while abs(turn_step) > step_turn_delay:
 					if (turn_step > 0.0):
-						rot = rot.rotated(Vector3(0.0, -1.0, 0.0), step_turn_angle * PI / 180.0)
+						rot = rot.rotated(Vector3(0.0, 1.0, 0.0), step_turn_angle * PI / 180.0)
 						turn_step -= step_turn_delay
 					else:
-						rot = rot.rotated(Vector3(0.0, 1.0, 0.0), step_turn_angle * PI / 180.0)
+						rot = rot.rotated(Vector3(0.0, -1.0, 0.0), step_turn_angle * PI / 180.0)
 						turn_step += step_turn_delay
 				
 				origin_node.transform *= t2 * rot * t1
