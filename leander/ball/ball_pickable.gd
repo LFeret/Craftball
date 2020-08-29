@@ -83,7 +83,7 @@ func let_go(starting_linear_velocity = Vector3(0.0, 0.0, 0.0)):
 		
 		# reparent it
 		picked_up_by.remove_child(self)
-		original_parent.add_child(self)
+		original_parent.get_parent().add_child(self)
 		
 		# reposition it and apply impulse
 		global_transform = t
