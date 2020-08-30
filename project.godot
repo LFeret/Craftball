@@ -25,6 +25,7 @@ config="*res://config.gd"
 timer="*res://leander/global_timer.gd"
 global="*res://global.gd"
 booster_registry="*res://booster_registry.gd"
+botai="*res://bot_ai.gd"
 
 [gdnative]
 

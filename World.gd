@@ -9,6 +9,7 @@ var bots = {}
 func _ready():
 	var networking_script = load("res://leander/multiplayer/network.gd")
 	var bot_script = load("res://leander/bots/bot.tscn")
+	var bot_ai = get_node("/root/botai")
 	var rng = RandomNumberGenerator.new()
 	networking = networking_script.new()
 	get_node("/root/global/").networking = networking
@@ -27,4 +28,6 @@ func _ready():
 		bot.set_color(curr_color)
 		player_color.remove(random_color_index)
 
+		bot_ai.register_bot(bot)
 		add_child(bot)
+		bot_ai.start()

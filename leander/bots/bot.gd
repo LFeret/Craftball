@@ -1,9 +1,6 @@
 extends Spatial
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var id
 var color
 var life = 5
@@ -42,7 +39,3 @@ func hit():
 func die():
 	self.queue_free()
 	print("Bot Died. Grats")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
