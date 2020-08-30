@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://leander/bots/bot_body.tscn" type="PackedScene" id=1]
+[ext_resource path="res://leander/bots/bot.gd" type="Script" id=2]
+
+[node name="bot" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="bot_body" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.972, 0, 0, 0, 0.987, 0, 0, 0, 0.731, 0, 1.17473, -2.26472 )

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://leander/bots/bot_body.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="Skin" id=2]
+
+[sub_resource type="CapsuleShape" id=3]
+
+[node name="bot_body" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -0.294436, -0.0189939, -7.49451e-08, -0.00695709, 0.828856, -1.48135e-09, 8.62682e-08, 9.09371e-10, -0.144738, 0, 0.920419, -0.00776172 )
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.348948, 0, 0, 0, 0.871521, 0, 0, 0, 0.159358, 0, 0.892459, -0.00732303 )
+shape = SubResource( 3 )
