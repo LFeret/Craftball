@@ -1,8 +1,8 @@
 extends Node
 
-const SERVER_PORT = 31400
+const SERVER_PORT = 25565# 31400
 const MAX_PLAYERS = 4
-const SERVER_IP = "127.0.0.1"
+const SERVER_IP = '77.179.133.221'#"25.40.8.132" # "25.40.8.132" # "127.0.0.1"
 
 var players = { }
 var self_data = { name = '', position = Vector3(0,0,0)}

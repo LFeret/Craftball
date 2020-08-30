@@ -60,9 +60,12 @@ func rescaleYTo(value):
 	$CollisionShape.set_scale(new_scale)
 	# TODO: paint into color of the players
 
-func set_is_wall(set_is_wall, group):
-	group = group
+func set_is_wall(set_is_wall, set_group):
+	group = set_group
 	is_wall = set_is_wall
+
+func get_group():
+	return group
 
 func get_is_wall():
 	return is_wall

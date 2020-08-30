@@ -78,13 +78,13 @@ func create_grid():
 				elif x == 0:
 					hex.set_is_wall(true, 'x0')
 				if y == 1:
-					hex.set_is_wall(true, 'y1')
-				elif x == 1:
-					hex.set_is_wall(true, 'x1')
-				elif y+1 == grid_h:
 					hex.set_is_wall(true, 'y0')
-				elif x+1 == grid_w:
+				elif x == 1:
 					hex.set_is_wall(true, 'x0')
+				elif y+1 == grid_h:
+					hex.set_is_wall(true, 'y1')
+				elif x+1 == grid_w:
+					hex.set_is_wall(true, 'x1')
 				elif y+2 == grid_h:
 					hex.set_is_wall(true, 'y1')
 				elif x+2 == grid_w:
@@ -97,7 +97,8 @@ func create_grid():
 	# paint walls
 	for hex in hexes:
 		if hex.get_is_wall():
-			match hex.group:
+			var group = hex.get_group()
+			match group:
 				'x0':
 					hex.paint_self('blue', 1)
 				'x1':
