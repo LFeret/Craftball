@@ -74,25 +74,38 @@ func create_grid():
 			
 			if not roof:
 				if y == 0:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'y0')
 				elif x == 0:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'x0')
 				if y == 1:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'y1')
 				elif x == 1:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'x1')
 				elif y+1 == grid_h:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'y0')
 				elif x+1 == grid_w:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'x0')
 				elif y+2 == grid_h:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'y1')
 				elif x+2 == grid_w:
-					hex.set_is_wall(true)
+					hex.set_is_wall(true, 'x1')
 				else:
 					growable_hexes.append(hex)
 			else:
 				hex.flip()
+	
+	# paint walls
+	for hex in hexes:
+		if hex.get_is_wall():
+			match hex.group:
+				'x0':
+					hex.paint_self('blue', 1)
+				'x1':
+					hex.paint_self('green', 1)
+				'y0':
+					hex.paint_self('red', 1)
+				'y1':
+					hex.paint_self('yellow', 1)
 
 func setup_map():
 	var i = 0

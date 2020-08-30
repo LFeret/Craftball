@@ -8,6 +8,7 @@ script = ExtResource( 1 )
 
 [node name="global_light" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.554017, 0.832506, 0, -0.832506, 0.554017, 0, 10.1816, 7.12866 )
+shadow_enabled = true
 
 [node name="board" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.210029, 0 )

@@ -2,6 +2,7 @@ extends RigidBody
 
 var current_holding = null
 var is_wall = false
+var group = null
 
 # Growing Logic
 var is_growing = false
@@ -9,6 +10,8 @@ var current_growth_value = 0
 var end_height = 15
 var growing_steps = 0.5
 var current_booster = null
+
+var current_color = 'white'
 
 func ready():
 	end_height = get_node("/root/config").world_height
@@ -26,6 +29,7 @@ func _process(delta):
 
 func grow():
 	is_growing = true
+	paint_self(current_color, 1)
 
 func spawn_booster(booster_instance):
 	if not current_booster:
@@ -54,8 +58,10 @@ func rescaleYTo(value):
 	var new_scale = Vector3(1, value, 1)
 	self.set_scale(new_scale)
 	$CollisionShape.set_scale(new_scale)
+	# TODO: paint into color of the players
 
-func set_is_wall(set_is_wall):
+func set_is_wall(set_is_wall, group):
+	group = group
 	is_wall = set_is_wall
 
 func get_is_wall():
@@ -64,7 +70,7 @@ func get_is_wall():
 func get_type():
 	return 'HexTile'
 
-func paint_self(color):
+func paint_self(color, material_index=0):
 	var material = SpatialMaterial.new()
 	#var material = $MeshInstance.get_surface_material(0)
 	
@@ -77,8 +83,14 @@ func paint_self(color):
 			material.albedo_color = Color(0,1,0)
 		'yellow':
 			material.albedo_color = Color(1,1,0)
+		'white':
+			material.albedo_color = Color(1,1,1)
+		'black':
+			material.albedo_color = Color(0,0,0)
 	
-	$CollisionShape.get_child(0).set_surface_material(0, material)
+	current_color = color
+	
+	$CollisionShape.get_child(0).set_surface_material(material_index, material)
 
 func flip():
 	rotate_x(deg2rad(180))
