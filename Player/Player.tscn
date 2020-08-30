@@ -35,3 +35,4 @@ script = ExtResource( 6 )
 pickup_range = 1.5
 
 [node name="player_body" parent="." instance=ExtResource( 8 )]
+collision_mask = 7
