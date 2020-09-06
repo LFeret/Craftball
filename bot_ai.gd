@@ -49,7 +49,7 @@ func _process(delta):
 				
 				var distance = bot_position.distance_to(player_position)
 				if distance <= scan_radius:
-					if bot:
+					if bot == null:
 						bot.set_player_pos(player_position)
 				else:
 					var random_x = null

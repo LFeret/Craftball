@@ -2,7 +2,7 @@ extends "res://addons/godot-openvr/scenes/ovr_controller.gd"
 
 const CONTROLLER_DEADZONE = 0.65
 
-const MOVEMENT_SPEED = 2
+const MOVEMENT_SPEED = 5
 
 enum MOVEMENT_TYPE { MOVE_AND_ROTATE, MOVE_AND_STRAFE }
 
@@ -13,7 +13,7 @@ export var step_turn_delay = 0.2
 export var step_turn_angle = 20.0
 export var drag_factor = 0.1
 export var player_radius = 0.4
-export var max_speed = 5.0
+
 
 var turn_step = 0.0
 var origin_node = null

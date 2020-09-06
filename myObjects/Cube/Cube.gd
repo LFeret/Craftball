@@ -40,6 +40,9 @@ func _on_Cube_body_entered(body):
 		pass
 	elif body.get_type() == "Ball":
 		print(body.get_type())
+	elif body.get_type() == "Player":
+		print("PLAYER!")
+		pass
 
 func _on_Cube_body_exited(body):
 	pass # Replace with function body.

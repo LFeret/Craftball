@@ -10,6 +10,7 @@
 [ext_resource path="res://Player/player_body.tscn" type="PackedScene" id=8]
 
 [node name="player" type="ARVROrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.52363, 0 )
 script = ExtResource( 4 )
 
 [node name="ARVRCamera" type="ARVRCamera" parent="."]
@@ -35,4 +36,4 @@ script = ExtResource( 6 )
 pickup_range = 1.5
 
 [node name="player_body" parent="." instance=ExtResource( 8 )]
-collision_mask = 7
+collision/safe_margin = 0.08
