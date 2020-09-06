@@ -20,6 +20,9 @@ func _on_speed_ball_body_entered(body):
 		body.queue_free()
 	elif body.get_type() == 'Player':
 		body.hit()
+	elif body.get_type() == 'bot':
+		if not is_bot_ball:
+			body.hit()
 	
 	# Bouncing Stuff
 	current_bounc_count += 1

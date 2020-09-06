@@ -8,6 +8,8 @@ var current_player = null
 var explosion
 var bouncing_sound = null
 
+var is_bot_ball = false
+
 func _ready():
 	current_bounc_count = 0
 	explosion = preload('res://leander/explosions/explosion.tscn')

@@ -15,7 +15,7 @@ var past_position = null
 var current_position = null
 
 var walking_direction = Vector3(1,0,1)
-var walking_speed = 100
+var walking_speed = 25
 
 var throw_direction = Vector3(0,0,0)
 
@@ -23,6 +23,9 @@ var throw_intervall = 5
 
 var time = 0
 var timerVar = 0
+
+func get_type():
+	return 'bot'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,8 +40,8 @@ func _process(delta):
 		timerVar = 0
 		
 		if time % throw_intervall == 0:
-			create_ball()
 			throw_ball()
+			time = 0
 	
 	# position logging - for throwing // leander stuff
 	if past_position == null:
@@ -98,7 +101,7 @@ func die():
 	self.queue_free()
 	print("Bot Died. Grats")
 
-func create_ball():
+func throw_ball():
 	match ball_type:
 		'normal_ball':
 			current_ball = ball.instance()
@@ -106,17 +109,10 @@ func create_ball():
 			current_ball = speed_ball.instance()
 		'block_ball':
 			current_ball = block_ball.instance()
-		
-	current_ball.color = color
-	
-	# maybe get node by player_id is necesseray
-	
-	current_ball.sleeping = true
-	# Set Ball Position
-	get_parent().add_child(current_ball) # add to World
 
-func throw_ball():
-	current_ball.sleeping = false
+	current_ball.color = color
+	current_ball.is_bot_ball = true
+
 	current_ball.thrown = true
 	current_ball.current_player = self
 	
@@ -134,8 +130,13 @@ func throw_ball():
 	collision_mask = 1
 	collision_layer = 1
 	
+	var bot_position = self.get_global_transform().origin
+	current_ball.translate(bot_position)
+	
 	# set our starting velocity
-	linear_velocity = force * 10
+	linear_velocity = force * 100
+	
+	get_parent().add_child(current_ball) # add to World
 	
 	#apply_impulse(Vector3(0.0, 0.0, 0.0), impulse)
 
