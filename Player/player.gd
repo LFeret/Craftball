@@ -6,19 +6,25 @@ var control = false
 var networking
 var color = ''
 
+#Ball
 var current_ball_type = 'normal_ball'
 var current_ball = null
 const ball = preload("res://leander/ball/ball.res")
 const speed_ball = preload("res://leander/ball/speed_ball.res")
-export var life = 5
 
+#Cube
 var current_cube_type = 'cube'
 var current_cube = null
 
+onready var ui : Node = get_node("/root/World/CanvasLayer/Ui")
+# stats
+var curHp : int = 5
+var maxHp : int = 5
+var score: int = 0
+export var life = 5
+
 export var impulse_factor = 1.0
-
 export var max_samples = 5
-
 var last_position = Vector3(0.0, 0.0, 0.0)
 var velocities = Array()
 
@@ -32,6 +38,9 @@ func _ready():
 		get_viewport().hdr = false
 		
 	last_position = global_transform.origin
+	# set the UI
+	ui.update_health_bar(curHp, maxHp)
+	ui.update_score_text(score)
 	
 
 func set_name(name):
@@ -40,11 +49,22 @@ func set_name(name):
 
 func hit():
 	life -= 1
+	
+	curHp -= 1
+	ui.update_health_bar(curHp, maxHp)
+	
 	if life <= 0:
 		self.die()
+		
+#Todo aufruf einbauen....
+func add_score(amount):
+	score += amount
+	ui.update_score_text(score)
 
+# wird aufgerufen wenn man 5 mal von den Bots getroffen wird 
 func die():
 	get_node("/root/global/").networking.player_died(player_id)
+	#player.add_score(scoreToGive)
 	self.queue_free()
 	get_tree().change_scene('res://Player/Screens/Endscreen.tscn')
 	print("you diiiied!!!! Dont hit yourself xD")
