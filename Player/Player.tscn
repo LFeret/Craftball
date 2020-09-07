@@ -10,11 +10,8 @@
 [ext_resource path="res://Player/player_body.tscn" type="PackedScene" id=8]
 
 [node name="player" type="ARVROrigin"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.52363, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.63938, 0 )
 script = ExtResource( 4 )
-
-[node name="ARVRCamera" type="ARVRCamera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25923, 0 )
 
 [node name="LeftHand" parent="." instance=ExtResource( 2 )]
 script = ExtResource( 7 )
@@ -37,3 +34,6 @@ pickup_range = 1.5
 
 [node name="player_body" parent="." instance=ExtResource( 8 )]
 collision/safe_margin = 0.08
+
+[node name="ARVRCamera" type="ARVRCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25923, -2.6226e-06 )

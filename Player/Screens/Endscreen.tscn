@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Screens/PinClipart.com_crazy-hair-day-clip_5384683.png" type="Texture" id=1]
+[ext_resource path="res://Player/Screens/sans-culottes/SANS CULOTTES/SANSC___.TTF" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 280
+extra_spacing_top = 10
+font_data = ExtResource( 2 )
+
+[node name="Endscreen" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 477.0
+margin_top = 739.0
+margin_right = 5421.0
+margin_bottom = 4187.0
+rect_scale = Vector2( 0.173, 0.147 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scull" type="TextureRect" parent="VBoxContainer"]
+margin_right = 5620.0
+margin_bottom = 1982.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="CenterRow" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 1986.0
+margin_right = 5620.0
+margin_bottom = 3448.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow"]
+margin_right = 5620.0
+margin_bottom = 1462.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
+margin_right = 5620.0
+margin_bottom = 837.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.00784314, 0.00784314, 0.00784314, 1 )
+text = "You Died!
+5 hits from the bots and you will die."
+align = 1
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}

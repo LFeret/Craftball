@@ -12,6 +12,7 @@ const ball = preload("res://leander/ball/ball.res")
 const speed_ball = preload("res://leander/ball/speed_ball.res")
 export var life = 5
 
+var current_cube_type = 'cube'
 var current_cube = null
 
 export var impulse_factor = 1.0
@@ -45,6 +46,7 @@ func hit():
 func die():
 	get_node("/root/global/").networking.player_died(player_id)
 	self.queue_free()
+	get_tree().change_scene('res://Player/Screens/Endscreen.tscn')
 	print("you diiiied!!!! Dont hit yourself xD")
 
 # leander stuff
@@ -97,6 +99,8 @@ remote func pick_up_booster(booster_type):
 			set_ball_type('speed_ball')
 		'block_ball':
 			set_ball_type('block_ball')
+		'long_life_cube':
+			set_cube_type('long_life_cube')
 
 remote func set_ball_type(ball_type):
 	var curr_player = networking.players[player_id]
@@ -104,6 +108,13 @@ remote func set_ball_type(ball_type):
 	curr_player.current_ball_type = ball_type
 	
 	$RightHand.setup_timer(30, 'ball')
+
+remote func set_cube_type(cube_type):
+	var curr_player = networking.players[player_id]
+	
+	curr_player.current_cube_type = cube_type
+	
+	$RightHand.setup_timer(30, 'cube')
 
 func get_right_controller():
 	return $RightHand

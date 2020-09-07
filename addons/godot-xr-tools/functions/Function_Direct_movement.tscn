@@ -2,14 +2,14 @@
 
 [ext_resource path="res://addons/godot-xr-tools/functions/Function_Direct_movement.gd" type="Script" id=1]
 
-
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.3
 height = 1.2
 
 [node name="Function_Direct_movement" type="Node"]
 script = ExtResource( 1 )
-max_speed = 500.0
+max_speed = 5.0
+canFly = false
 
 [node name="KinematicBody" type="KinematicBody" parent="."]
 collision_mask = 1048574

@@ -3,6 +3,7 @@ extends Node
 
 var speed_ball_booster_script
 var block_ball_booster_script
+var long_life_cube_booster_script
 
 var boosters
 
@@ -11,9 +12,11 @@ var boosters
 func _ready():
 	speed_ball_booster_script = load('res://leander/booster/speed_ball_booster.res')
 	block_ball_booster_script = load('res://leander/booster/block_ball_booster.res')
+	long_life_cube_booster_script = load('res://myObjects/Booster/long_life_cube_booster.res')
 	boosters = []
 	boosters.append(speed_ball_booster_script)
 	boosters.append(block_ball_booster_script)
+	boosters.append(long_life_cube_booster_script)
 
 func get_booster_count():
 	return boosters.size()

@@ -9,17 +9,23 @@ enum MOVEMENT_TYPE { MOVE_AND_ROTATE, MOVE_AND_STRAFE }
 # to combat motion sickness we'll 'step' our left/right turning
 export var smooth_rotation = false
 export var smooth_turn_speed = 2.0
-export var step_turn_delay = 0.2
+export var step_turn_delay = 0.15
 export var step_turn_angle = 20.0
 export var drag_factor = 0.1
 export var player_radius = 0.4
-
+export var enabled = true setget set_enabled, get_enabled
 
 var turn_step = 0.0
 var origin_node = null
 var camera_node = null
 var velocity = Vector3(0.0, 0.0, 0.0)
 var gravity = -30.0
+onready var collision_shape: CollisionShape = get_parent().get_node("player_body/CollisionShape")
+
+export var max_speed = 20.0
+
+var collision_layer = 7
+var collision_mask = 7
 
 export (MOVEMENT_TYPE) var move_type = MOVEMENT_TYPE.MOVE_AND_ROTATE
 
@@ -28,6 +34,40 @@ var directional_movement = false
 func _ready():
 	origin_node = get_node("..")
 	camera_node = get_parent().get_node("ARVRCamera")
+	
+	set_collision_layer(collision_layer)
+	set_collision_mask(collision_mask)	
+	
+	set_enabled(true)
+	
+func set_enabled(new_value):
+	enabled = new_value
+	if collision_shape:
+		collision_shape.disabled = !enabled
+	if enabled:
+		# make sure our physics process is on
+		set_physics_process(true)
+	else:
+		# we turn this off in physics process just in case we want to do some cleanup
+		pass
+		
+func set_collision_layer(new_layer):
+	collision_layer = new_layer
+	if $KinematicBody:
+		$KinematicBody.collision_layer = collision_layer
+
+func get_collision_layer():
+	return collision_layer
+
+func set_collision_mask(new_mask):
+	collision_mask = new_mask
+	if $KinematicBody:
+		$KinematicBody.collision_mask = collision_mask
+
+func get_collision_mask():
+	return collision_mask
+func get_enabled():
+	return enabled
 	
 func _process(delta):
 	#TODO Umschauen geht nur die Richtung vom laufen ist noch nicht richtig
@@ -109,17 +149,73 @@ func _process(delta):
 				while abs(turn_step) > step_turn_delay:
 					if (turn_step > 0.0):
 						rot = rot.rotated(Vector3(0.0, 1.0, 0.0), step_turn_angle * PI / 180.0)
-						turn_step -= step_turn_delay
+						turn_step -= step_turn_delay	
+						turn_step -= step_turn_delay	
 					else:
 						rot = rot.rotated(Vector3(0.0, -1.0, 0.0), step_turn_angle * PI / 180.0)
 						turn_step += step_turn_delay
 
 				origin_node.transform *= t2 * rot * t1
+				get_parent().get_node("ARVRCamera").transform *= t2 * rot * t1
 
 	else:
 		# reset turn step, no longer turning
 		turn_step = 0.0
-		
-		
+
+
 	################################################################
 	#	var playerBody = get_parent().get_node("player_body")
+	################################################################
+	# now we do our movement
+	# We start with placing our KinematicBody in the right place
+	# by centering it on the camera but placing it on the ground
+#	var curr_transform = get_parent().get_node("player_body").global_transform
+#	var camera_transform = camera_node.global_transform
+#	curr_transform.origin = camera_transform.origin
+#	curr_transform.origin.y = origin_node.global_transform.origin.y
+#
+#	# now we move it slightly back
+#	var forward_dir = -camera_transform.basis.z
+#	forward_dir.y = 0.0
+#	if forward_dir.length() > 0.01:
+#		curr_transform.origin += forward_dir.normalized() * -0.75 * player_radius
+#
+#	get_parent().get_node("player_body").global_transform = curr_transform
+#
+#	# we'll handle gravity separately
+#	var gravity_velocity = Vector3(0.0, velocity.y, 0.0)
+#	velocity.y = 0.0
+#
+#	# Apply our drag
+#	velocity *= (1.0 - drag_factor)
+#
+#	if move_type == MOVEMENT_TYPE.MOVE_AND_ROTATE:
+#		if (abs(forwards_backwards) > 0.1 ):
+#			var dir = camera_transform.basis.z
+#			dir.y = 0.0
+#			velocity = dir.normalized() * -forwards_backwards * delta * max_speed * ARVRServer.world_scale
+#			#velocity = velocity.linear_interpolate(dir, delta * 100.0)
+#	elif move_type == MOVEMENT_TYPE.MOVE_AND_STRAFE:
+#		if ((abs(forwards_backwards) > 0.1 ||  abs(left_right) > 0.1) ):
+#			var dir_forward = camera_transform.basis.z
+#			dir_forward.y = 0.0
+#			# VR Capsule will strafe left and right
+#			var dir_right = camera_transform.basis.x;
+#			dir_right.y = 0.0
+#			velocity = (dir_forward * -forwards_backwards + dir_right * left_right).normalized() * delta * max_speed * ARVRServer.world_scale
+#
+#	# apply move and slide to our kinematic body
+#	velocity = get_parent().get_node("player_body").move_and_slide(velocity, Vector3(0.0, 1.0, 0.0))
+#
+#	# apply our gravity
+#	gravity_velocity.y += gravity * delta
+#	gravity_velocity = get_parent().get_node("player_body").move_and_slide(gravity_velocity, Vector3(0.0, 1.0, 0.0))
+#	velocity.y = gravity_velocity.y
+#
+#	# now use our new position to move our origin point
+#	var movement = (get_parent().get_node("player_body").global_transform.origin - curr_transform.origin)
+#	origin_node.global_transform.origin += movement
+#
+#	# Return this back to where it was so we can use its collision shape for other things too
+#	# $KinematicBody.global_transform.origin = curr_transform.origin
+#

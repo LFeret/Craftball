@@ -262,7 +262,7 @@ func _physics_process(delta):
 			
 			# apply our gravity
 			gravity_velocity.y += gravity * delta
-			gravity_velocity = $KinematicBody.move_and_slide(gravity_velocity, Vector3(0.0, 1.0, 0.0))
+#			gravity_velocity = $KinematicBody.move_and_slide(gravity_velocity, Vector3(0.0, 1.0, 0.0))
 			velocity.y = gravity_velocity.y
 			
 			# now use our new position to move our origin point

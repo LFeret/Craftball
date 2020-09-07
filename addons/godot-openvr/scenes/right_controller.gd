@@ -6,6 +6,7 @@ const speed_ball = preload("res://leander/ball/speed_ball.res")
 const block_ball = preload("res://leander/ball/block_ball.res")
 const timer = preload("res://leander/gui/timer_display.tscn")
 const cube = preload("res://myObjects/Cube/Cube.tscn")
+const long_life_cube = preload("res://myObjects/Cube/CubeLongLife.tscn")
 const ramp = preload("res://myObjects/Cube/Ramp2.tscn")
 #const cube = null
 var player = null
@@ -129,6 +130,12 @@ remote func create_cube(id):
 	if -get_joystick_axis(1) <= 0 and get_joystick_axis(0) >= 0:
 		curr_player.current_cube = ramp.instance()
 	elif -get_joystick_axis(1) >= 0 and get_joystick_axis(0) <= 0:
+		match curr_player.current_cube_type:
+			'long_life_cube':
+				curr_player.current_cube = long_life_cube.instance()
+			'cube':
+				curr_player.current_cube = cube.instance()
+
 		curr_player.current_cube = cube.instance()
 	
 	curr_player.current_cube.sleeping = true

@@ -30,3 +30,5 @@ func _physics_process(delta):
 func pick_up_booster(booster_type):
 	if booster_type == 'speed_ball':
 		player.set_ball_type('speed_ball')
+	if booster_type == 'long_life_cube':
+		player.set_cube_type('long_life_cube')
