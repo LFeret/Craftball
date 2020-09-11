@@ -66,7 +66,17 @@ func die():
 	get_node("/root/global/").networking.player_died(player_id)
 	#player.add_score(scoreToGive)
 	self.queue_free()
-	get_tree().change_scene('res://Player/Screens/Endscreen.tscn')
+	
+	# Lösche das Ui Ansicht 
+#	onready var ui : Node = get_node("/root/World/CanvasLayer/Ui")
+	get_node("/root").remove_child(ui)
+	ui.call_deferred("free")
+
+	# Zeige Endscreen an mit den EndScores
+	var endScreenRes = load('res://Player/Screens/Endscreen.tscn')
+	var endScreen = endScreenRes.instance()
+	get_node("/root").add_child(endScreen)
+	
 	print("you diiiied!!!! Dont hit yourself xD")
 
 # leander stuff

@@ -1,16 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Screens/PinClipart.com_crazy-hair-day-clip_5384683.png" type="Texture" id=1]
 [ext_resource path="res://Player/Screens/sans-culottes/SANS CULOTTES/SANSC___.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Player/Screens/Endscreen.gd" type="Script" id=3]
+[ext_resource path="res://Player/Screens/sans-culottes/SANS CULOTTES/SANSC___.otf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 280
 extra_spacing_top = 10
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 280
+font_data = ExtResource( 4 )
+
 [node name="Endscreen" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,7 +50,7 @@ margin_bottom = 1462.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
+[node name="EndMessage" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
 margin_right = 4944.0
 margin_bottom = 837.0
 custom_fonts/font = SubResource( 1 )
@@ -55,3 +62,10 @@ max_lines_visible = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HitScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
+margin_top = 841.0
+margin_right = 4944.0
+margin_bottom = 1248.0
+custom_fonts/font = SubResource( 2 )
+align = 1
