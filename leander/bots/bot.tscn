@@ -9,15 +9,21 @@
 [sub_resource type="CapsuleShape" id=3]
 
 [node name="bot" type="RigidBody"]
+transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 2, 0, 6.76275, 0 )
+mode = 1
+mass = 0.01
+gravity_scale = 0.0
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( -0.294436, -0.0189939, -7.49451e-08, -0.00695709, 0.828856, -1.48135e-09, 8.62682e-08, 9.09371e-10, -0.144738, 0, 0.920419, -0.00776172 )
+transform = Transform( -0.294436, -0.0189939, -7.49451e-08, 0.000133595, -0.0159265, 0.144711, -0.00695581, 0.828703, 0.00278115, 0, 0.574284, -0.00776172 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 skeleton = NodePath("")
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.348948, 0, 0, 0, 0.871521, 0, 0, 0, 0.159358, 0, 0.892459, -0.00732303 )
+transform = Transform( 0.348948, -1.86264e-09, 7.10543e-15, -2.03144e-11, -0.0167463, -0.159329, -1.01009e-10, 0.87136, -0.00306207, 1.68945e-10, 0.574384, -0.035725 )
 shape = SubResource( 3 )
+[connection signal="body_entered" from="." to="." method="_on_bot_body_entered"]
