@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Screens/PinClipart.com_crazy-hair-day-clip_5384683.png" type="Texture" id=1]
 [ext_resource path="res://Player/Screens/sans-culottes/SANS CULOTTES/SANSC___.TTF" type="DynamicFontData" id=2]
@@ -11,6 +11,10 @@ extra_spacing_top = 10
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 280
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 280
 font_data = ExtResource( 4 )
 
@@ -41,12 +45,12 @@ stretch_mode = 4
 [node name="CenterRow" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 1986.0
 margin_right = 4944.0
-margin_bottom = 3448.0
+margin_bottom = 3645.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow"]
 margin_right = 4944.0
-margin_bottom = 1462.0
+margin_bottom = 1659.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -68,4 +72,11 @@ margin_top = 841.0
 margin_right = 4944.0
 margin_bottom = 1248.0
 custom_fonts/font = SubResource( 2 )
+align = 1
+
+[node name="ColorScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
+margin_top = 1252.0
+margin_right = 4944.0
+margin_bottom = 1659.0
+custom_fonts/font = SubResource( 3 )
 align = 1

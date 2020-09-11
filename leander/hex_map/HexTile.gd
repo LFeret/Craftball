@@ -94,6 +94,9 @@ func paint_self(color, material_index=0):
 	current_color = color
 	
 	$CollisionShape.get_child(0).set_surface_material(material_index, material)
+	
+func get_Color():
+	return current_color
 
 func flip():
 	rotate_x(deg2rad(180))

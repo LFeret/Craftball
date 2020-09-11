@@ -35,6 +35,9 @@ func _ready():
 	calc_start_pos()
 	create_grid()
 	setup_map()
+	
+func get_hexes():
+	return hexes
 
 func calc_start_pos():
 	var offset = hex_w / 2.0
