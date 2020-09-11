@@ -81,12 +81,12 @@ remote func create_ball(id):
 	match curr_player.current_ball_type:
 		'normal_ball':
 			curr_player.current_ball = ball.instance()
-			curr_player.current_ball.set_player(curr_player)
 		'speed_ball':
 			curr_player.current_ball = speed_ball.instance()
 		'block_ball':
 			curr_player.current_ball = block_ball.instance()
 		
+	curr_player.current_ball.set_player(curr_player)
 	curr_player.current_ball.color = curr_player.color
 	
 	# maybe get node by player_id is necesseray

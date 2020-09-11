@@ -31,7 +31,7 @@ func _on_ball_body_entered(body):
 	elif body.get_type() == 'Player':
 		body.hit()
 	elif body.get_type() == 'bot':
-		if player:
+		if player != null:
 			player.add_score(10)
 		if not is_bot_ball:
 			body.hit()

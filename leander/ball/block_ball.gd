@@ -2,8 +2,13 @@ extends "res://leander/ball/ball.gd"
 
 const cube_script = preload("res://myObjects/Cube/Cube.tscn")
 
+var player
+
 func _ready():
 	bouncing_count = 3
+	
+func set_player(playerObject):
+	player = playerObject
 
 func _on_speed_ball_body_entered(body):
 	# Painting Floor Stuff
@@ -21,6 +26,8 @@ func _on_speed_ball_body_entered(body):
 	elif body.get_type() == 'Player':
 		body.hit()
 	elif body.get_type() == 'bot':
+		if player != null:
+			player.add_score(10)
 		if not is_bot_ball:
 			body.hit()
 	
