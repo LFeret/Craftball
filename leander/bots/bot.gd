@@ -56,7 +56,7 @@ func _process(delta):
 
 func set_player_pos(player_pos):
 	walking_direction = player_pos
-	throw_direction = player_pos
+	set_throw_direction()
 	
 func set_color(set_color) -> void:
 	color = set_color
@@ -89,8 +89,8 @@ func set_walking_direction(direction):
 func set_walking_speed(speed):
 	self.walking_speed = speed
 
-func set_throw_direction(direction):
-	self.throw_direction = direction
+func set_throw_direction():
+	self.throw_direction = Vector3(0, 1, 0)
 
 func hit():
 	life -= 1
@@ -145,3 +145,7 @@ func get_linear_velocity():
 		return (current_position.origin - past_position.origin) / 0.0166 # 0.0166 --> framerate (time-delta)
 	else:
 		return Vector3(0,0,0)
+
+func _on_bot_body_entered(body):
+	walking_direction = -walking_direction
+	pass # Replace with function body.
