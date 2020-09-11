@@ -16,10 +16,17 @@ func _ready():
 	add_child(networking)
 	networking.start_server()
 	
+	var start_vectors = [
+		Vector3(2, 0, 2),
+		Vector3(-2, 0, -2),
+		Vector3(-2, 0, 2)
+	]
+	
 	for i in range(1,4):
 		var bot = bot_script.instance()
 		bot.id = i
 		bots[i] = bot
+		bot.translate(start_vectors[i-1])
 		var player_color = networking.player_color
 		var size = len(player_color)
 		var random_color_index = rng.randi_range(0, size-1)
@@ -30,4 +37,3 @@ func _ready():
 
 		bot_ai.register_bot(bot)
 		add_child(bot)
-		bot_ai.start()

@@ -21,6 +21,8 @@ var throw_direction = Vector3(0,0,0)
 
 var throw_intervall = 5
 
+var rng
+
 var time = 0
 var timerVar = 0
 
@@ -29,7 +31,7 @@ func get_type():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	rng = RandomNumberGenerator.new()
 
 func _process(delta):
 	timerVar += delta
@@ -42,21 +44,8 @@ func _process(delta):
 		if time % throw_intervall == 0:
 			throw_ball()
 			time = 0
-	
-	# position logging - for throwing // leander stuff
-	if past_position == null:
-		past_position = global_transform # controler right now
-	elif current_position == null:
-		current_position = global_transform # controler right now
-	else:
-		past_position = current_position
-		current_position = global_transform # controler right now
 
 	set_linear_velocity(walking_direction * walking_speed * delta)
-
-func set_player_pos(player_pos):
-	walking_direction = player_pos
-	set_throw_direction()
 	
 func set_color(set_color) -> void:
 	color = set_color
@@ -90,7 +79,7 @@ func set_walking_speed(speed):
 	self.walking_speed = speed
 
 func set_throw_direction():
-	self.throw_direction = Vector3(0, 1, 0)
+	self.throw_direction = Vector3(0, -10, 0)
 
 func hit():
 	life -= 1
@@ -117,11 +106,7 @@ func throw_ball():
 	current_ball.current_player = self
 	
 	var force = null
-	# errechne Richtungs und Kraft Vector
-	if throw_direction == Vector3(0,0,0):
-		force = get_linear_velocity()
-	else:
-		force = throw_direction
+	force = throw_direction
 	
 	var t = global_transform
 
@@ -131,10 +116,10 @@ func throw_ball():
 	collision_layer = 1
 	
 	var bot_position = self.get_global_transform().origin
-	current_ball.translate(bot_position)
+	current_ball.translate(Vector3(bot_position.x, bot_position.y - 2, bot_position.z))
 	
 	# set our starting velocity
-	linear_velocity = force * 100
+	linear_velocity = force * 100 * rng.randi_range(1, 10)
 	
 	get_parent().add_child(current_ball) # add to World
 	
@@ -149,3 +134,13 @@ func get_linear_velocity():
 func _on_bot_body_entered(body):
 	walking_direction = -walking_direction
 	pass # Replace with function body.
+
+remote func pick_up_booster(booster_type):
+	match booster_type:
+		'speed_ball':
+			set_ball_type('speed_ball')
+		'block_ball':
+			set_ball_type('block_ball')
+
+remote func set_ball_type(ball_type):	
+	ball_type = ball_type
