@@ -81,6 +81,7 @@ remote func create_ball(id):
 	match curr_player.current_ball_type:
 		'normal_ball':
 			curr_player.current_ball = ball.instance()
+			curr_player.current_ball.set_player(curr_player)
 		'speed_ball':
 			curr_player.current_ball = speed_ball.instance()
 		'block_ball':
