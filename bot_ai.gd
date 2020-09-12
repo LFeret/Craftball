@@ -6,3 +6,8 @@ var bots = []
 
 func register_bot(bot):
 	bots.append(bot)
+	
+func delete_bots():
+	for bot in bots:
+		bot.queue_free()
+	bots.clear()

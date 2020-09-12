@@ -1,4 +1,4 @@
-extends "res://myObjects/Cube/Cube_pickable.gd"
+extends "res://mandy/Cube/Cube_pickable.gd"
 
 export var max_shots:int
 var current_shot_count:int
@@ -12,7 +12,7 @@ var cube_sound
 func _ready():
 	max_shots = 3
 	explosion = preload('res://leander/explosions/explosion.tscn')
-	cube_sound = preload("res://myObjects/Cube/car_door_close_1.wav")
+	cube_sound = preload("res://mandy/Cube/car_door_close_1.wav")
 	$audio.stream = cube_sound
 	#set_contact_monitor(true)
 	#set_max_contacts_reported(99999999)

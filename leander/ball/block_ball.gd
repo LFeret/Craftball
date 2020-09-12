@@ -1,6 +1,6 @@
 extends "res://leander/ball/ball.gd"
 
-const cube_script = preload("res://myObjects/Cube/Cube.tscn")
+const cube_script = preload("res://mandy/Cube/Cube.tscn")
 
 var player
 

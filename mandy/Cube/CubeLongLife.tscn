@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://myObjects/Cube/CubeLongLife.gd" type="Script" id=1]
-[ext_resource path="res://myObjects/Cube/build_matieral.tres" type="Material" id=2]
+[ext_resource path="res://mandy/Cube/build_matieral.tres" type="Material" id=1]
+[ext_resource path="res://mandy/Cube/CubeLongLife.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -20,7 +20,7 @@ gravity_scale = 3.0
 continuous_cd = true
 contacts_reported = 1000
 contact_monitor = true
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 center_pickup_on = NodePath("Pickup")
 
 [node name="Pickup" type="Spatial" parent="."]
@@ -32,7 +32,7 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
 mesh = SubResource( 3 )
-material/0 = ExtResource( 2 )
+material/0 = ExtResource( 1 )
 
 [node name="audio" type="AudioStreamPlayer3D" parent="."]
 [connection signal="body_entered" from="." to="." method="_on_Cube_body_entered"]

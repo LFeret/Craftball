@@ -68,8 +68,12 @@ func add_score(amount):
 # wird aufgerufen wenn man 5 mal von den Bots getroffen wird 
 func die():
 	get_node("/root/global/").networking.player_died(player_id)
-	#player.add_score(scoreToGive)
+	# Lösche den Player
 	self.queue_free()
+	
+	# Lösche die Bots
+	var bots_ai = get_node("/root/botai")
+	bots_ai.delete_bots()
 	
 	# Lösche das Ui Ansicht 
 #	onready var ui : Node = get_node("/root/World/CanvasLayer/Ui")
@@ -77,7 +81,7 @@ func die():
 	ui.call_deferred("free")
 
 	# Zeige Endscreen an mit den EndScores
-	var endScreenRes = load('res://Player/Screens/Endscreen.tscn')
+	var endScreenRes = load('res://mandy/Screens/Endscreen.tscn')
 	var endScreen = endScreenRes.instance()
 	endScreen.set_player_color(color)
 	get_node("/root").add_child(endScreen)

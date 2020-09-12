@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://myObjects/Cube/Ramp.gd" type="Script" id=1]
-[ext_resource path="res://myObjects/Cube/build_matieral.tres" type="Material" id=2]
+[ext_resource path="res://mandy/Cube/build_matieral.tres" type="Material" id=1]
+[ext_resource path="res://mandy/Cube/Ramp.gd" type="Script" id=2]
 
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( 0, 0, 0, 0.7, 0, 0, 0.7, 0, -1.3, 0, 0, -1.3, 0.7, 0.7, -1.3, 0, 0.7, -1.3 )
 
 [sub_resource type="PrismMesh" id=2]
-material = ExtResource( 2 )
+material = ExtResource( 1 )
 
 [node name="Ramp" type="RigidBody"]
 collision_layer = 7
@@ -16,7 +16,7 @@ mass = 2.0
 gravity_scale = 3.0
 contacts_reported = 100
 contact_monitor = true
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 center_pickup_on = NodePath("Pickup")
 
 [node name="Pickup" type="Spatial" parent="."]

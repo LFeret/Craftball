@@ -11,7 +11,7 @@ var ball_type = 'normal_ball'
 const ball = preload("res://leander/ball/ball.res")
 const speed_ball = preload("res://leander/ball/speed_ball.res")
 const block_ball = preload("res://leander/ball/block_ball.res")
-const cube = preload('res://myObjects/Cube/Cube.tscn')
+const cube = preload('res://mandy/Cube/Cube.tscn')
 
 var past_position = null
 var current_position = null
@@ -25,7 +25,7 @@ var throw_intervall = 3
 var move_intervall = 0.06
 
 var block_time = 0
-var block_intervall = 5
+var block_intervall = 15
 
 var rng
 
@@ -120,6 +120,8 @@ func die():
 
 func set_block():
 	var current_cube = cube.instance()
+	
+	current_cube.original_parent = self
 	
 	var bot_position = self.get_global_transform().origin
 	current_cube.translate(Vector3(bot_position.x, bot_position.y - 2, bot_position.z))

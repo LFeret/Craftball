@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PinClipart.com_crazy-hair-day-clip_5384683.png-c0894835f0b3479f9fe532a5cf1b4cef.stex"
+path="res://.import/PinClipart.com_crazy-hair-day-clip_5384683.png-c551631a166352730f75e203a52cbf82.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Screens/PinClipart.com_crazy-hair-day-clip_5384683.png"
-dest_files=[ "res://.import/PinClipart.com_crazy-hair-day-clip_5384683.png-c0894835f0b3479f9fe532a5cf1b4cef.stex" ]
+source_file="res://mandy/Screens/PinClipart.com_crazy-hair-day-clip_5384683.png"
+dest_files=[ "res://.import/PinClipart.com_crazy-hair-day-clip_5384683.png-c551631a166352730f75e203a52cbf82.stex" ]
 
 [params]
 
