@@ -1,4 +1,4 @@
-extends RigidBody
+extends KinematicBody
 
 
 var id
@@ -32,6 +32,7 @@ func get_type():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng = RandomNumberGenerator.new()
+	move(walking_direction)
 
 func _process(delta):
 	timerVar += delta
@@ -45,7 +46,8 @@ func _process(delta):
 			throw_ball()
 			time = 0
 
-	set_linear_velocity(walking_direction * walking_speed * delta)
+func move(direction):
+	var collision = move_and_collide(direction * walking_speed)
 	
 func set_color(set_color) -> void:
 	color = set_color
@@ -111,7 +113,6 @@ func throw_ball():
 	var t = global_transform
 
 	global_transform = t
-	mode = RigidBody.MODE_RIGID
 	collision_mask = 1
 	collision_layer = 1
 	
@@ -119,7 +120,7 @@ func throw_ball():
 	current_ball.translate(Vector3(bot_position.x, bot_position.y - 2, bot_position.z))
 	
 	# set our starting velocity
-	linear_velocity = force * 100 * rng.randi_range(1, 10)
+	current_ball.linear_velocity = force * 10 * rng.randi_range(1, 10)
 	
 	get_parent().add_child(current_ball) # add to World
 	

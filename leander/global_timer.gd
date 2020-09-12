@@ -40,7 +40,8 @@ func _process(delta):
 		if time >= start_power_up_time:
 			var current_spawn = ((time - start_power_up_time)%power_spawn_time)
 			if current_spawn == 0:
-				global.board.spawn_booster()
+				if global.board:
+					global.board.spawn_booster()
 
 func get_time():
 	return time
