@@ -4,7 +4,7 @@ var player
 
 var id
 var color
-var life = 5
+var life = 1
 var current_ball
 var ball_type = 'normal_ball'
 
@@ -107,6 +107,9 @@ func set_walking_direction(direction):
 		
 func set_walking_speed(speed):
 	self.walking_speed = speed
+
+func get_lifes():
+	return life
 
 func hit():
 	life -= 1

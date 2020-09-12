@@ -21,6 +21,7 @@ onready var ui : Node = get_node("/root/World/CanvasLayer/Ui")
 var curHp : int = 5
 var maxHp : int = 5
 var score: int = 0
+var destroyedBots: int = 0
 export var life = 5
 
 export var impulse_factor = 1.0
@@ -60,7 +61,12 @@ func hit():
 	if life <= 0:
 		self.die()
 		
-#Todo aufruf einbauen....
+func count_destroyed_bots():
+	destroyedBots += 1
+
+func get_destroyed_bots():
+	return destroyedBots
+	
 func add_score(amount):
 	score += amount
 	ui.update_score_text(score)
@@ -87,6 +93,21 @@ func die():
 	get_node("/root").add_child(endScreen)
 	
 	print("you diiiied!!!! Dont hit yourself xD")
+
+func win():
+	# Lösche den Player
+	self.queue_free()
+	
+	# Lösche das Ui Ansicht 
+#	onready var ui : Node = get_node("/root/World/CanvasLayer/Ui")
+	get_node("/root").remove_child(ui)
+	ui.call_deferred("free")
+	
+	# Zeige Winscreen an mit den EndScores
+	var winScreenRes = load('res://mandy/Screens/Winscreen.tscn')
+	var winScreen = winScreenRes.instance()
+	winScreen.set_player_color(color)
+	get_node("/root").add_child(winScreen)
 
 # leander stuff
 func _process(delta):
