@@ -1,24 +1,24 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://mandy/Screens/PinClipart.com_crazy-hair-day-clip_5384683.png" type="Texture" id=1]
-[ext_resource path="res://mandy/Screens/sans-culottes/SANS CULOTTES/SANSC___.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://mandy/Screens/cup-1614530_1920.png" type="Texture" id=1]
+[ext_resource path="res://Player/UI/Ubuntu-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://mandy/Screens/Endscreen.gd" type="Script" id=3]
-[ext_resource path="res://mandy/Screens/sans-culottes/SANS CULOTTES/SANSC___.otf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 280
+outline_color = Color( 0.101961, 0.882353, 0.662745, 1 )
 extra_spacing_top = 10
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 280
-font_data = ExtResource( 4 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 280
-font_data = ExtResource( 4 )
+font_data = ExtResource( 2 )
 
-[node name="Endscreen" type="Control"]
+[node name="Winscreen" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 3 )
@@ -38,29 +38,29 @@ __meta__ = {
 
 [node name="Scull" type="TextureRect" parent="VBoxContainer"]
 margin_right = 4944.0
-margin_bottom = 1982.0
+margin_bottom = 1920.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="CenterRow" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 1986.0
+margin_top = 1924.0
 margin_right = 4944.0
-margin_bottom = 3645.0
+margin_bottom = 3448.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow"]
 margin_right = 4944.0
-margin_bottom = 1659.0
+margin_bottom = 1524.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="EndMessage" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
 margin_right = 4944.0
-margin_bottom = 837.0
+margin_bottom = 651.0
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.00784314, 0.00784314, 0.00784314, 1 )
-text = "You Died!
-5 hits from the bots and you will die."
+custom_colors/font_color = Color( 0.733333, 0.807843, 0.364706, 1 )
+text = "Winner!!!
+You destroyed all bots."
 align = 1
 max_lines_visible = 4
 __meta__ = {
@@ -68,15 +68,15 @@ __meta__ = {
 }
 
 [node name="HitScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
-margin_top = 841.0
+margin_top = 655.0
 margin_right = 4944.0
-margin_bottom = 1248.0
+margin_bottom = 969.0
 custom_fonts/font = SubResource( 2 )
 align = 1
 
 [node name="ColorScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
-margin_top = 1252.0
+margin_top = 973.0
 margin_right = 4944.0
-margin_bottom = 1659.0
+margin_bottom = 1287.0
 custom_fonts/font = SubResource( 3 )
 align = 1
