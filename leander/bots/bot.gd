@@ -11,6 +11,7 @@ var ball_type = 'normal_ball'
 const ball = preload("res://leander/ball/ball.res")
 const speed_ball = preload("res://leander/ball/speed_ball.res")
 const block_ball = preload("res://leander/ball/block_ball.res")
+const cube = preload('res://myObjects/Cube/Cube.tscn')
 
 var past_position = null
 var current_position = null
@@ -22,6 +23,9 @@ var throw_direction = Vector3(0,0,0)
 
 var throw_intervall = 3
 var move_intervall = 0.06
+
+var block_time = 0
+var block_intervall = 5
 
 var rng
 
@@ -41,6 +45,7 @@ func _ready():
 func _process(delta):
 	timerVar += delta
 	move_time += delta
+	block_time += delta
 	
 	if timerVar >= 1:
 		# ~ 1 Second gone
@@ -60,6 +65,10 @@ func _process(delta):
 	
 	if move_time >= move_intervall:
 		move(walking_direction)
+	
+	if block_time >= block_intervall:
+		set_block()
+		block_time = 0
 
 func move(direction):
 	
@@ -108,6 +117,14 @@ func hit():
 func die():
 	self.queue_free()
 	print("Bot Died. Grats")
+
+func set_block():
+	var current_cube = cube.instance()
+	
+	var bot_position = self.get_global_transform().origin
+	current_cube.translate(Vector3(bot_position.x, bot_position.y - 2, bot_position.z))
+	
+	get_parent().add_child(current_cube)
 
 func throw_ball():
 	match ball_type:
