@@ -9,7 +9,7 @@
 [sub_resource type="CapsuleShape" id=3]
 
 [node name="bot" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.08362, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.88933, 0 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

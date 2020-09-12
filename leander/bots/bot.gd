@@ -15,15 +15,17 @@ var past_position = null
 var current_position = null
 
 var walking_direction = Vector3(1,0,1)
-var walking_speed = 25
+var walking_speed = 0.01
 
 var throw_direction = Vector3(0,0,0)
 
 var throw_intervall = 5
+var move_intervall = 0.06
 
 var rng
 
-var time = 0
+var throw_time = 0
+var move_time = 0
 var timerVar = 0
 
 func get_type():
@@ -32,22 +34,30 @@ func get_type():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng = RandomNumberGenerator.new()
-	move(walking_direction)
+	walking_direction = Vector3(rng.randi_range(-10, 10), 0, rng.randi_range(-10, 10))
 
 func _process(delta):
 	timerVar += delta
+	move_time += delta
 	
 	if timerVar >= 1:
 		# ~ 1 Second gone
-		time += 1
+		throw_time += 1
 		timerVar = 0
 		
-		if time % throw_intervall == 0:
+		if throw_time >= throw_intervall:
 			throw_ball()
-			time = 0
+			throw_time = 0
+	
+	if move_time >= move_intervall:
+		move(walking_direction)
 
 func move(direction):
+	
 	var collision = move_and_collide(direction * walking_speed)
+	
+	if collision:
+		walking_direction = Vector3(rng.randi_range(-10, 10), 0, rng.randi_range(-10, 10))
 	
 func set_color(set_color) -> void:
 	color = set_color
