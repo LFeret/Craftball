@@ -46,12 +46,16 @@ func _ready():
 func set_name(name):
 	# wird vom Multiplayer gestarted, sobald sich ein client verbindet!
 	player_name = name
+	
+func get_color():
+	return color
 
 func hit():
 	life -= 1
 	
 	curHp -= 1
 	ui.update_health_bar(curHp, maxHp)
+	
 	
 	if life <= 0:
 		self.die()
@@ -66,7 +70,18 @@ func die():
 	get_node("/root/global/").networking.player_died(player_id)
 	#player.add_score(scoreToGive)
 	self.queue_free()
-	get_tree().change_scene('res://Player/Screens/Endscreen.tscn')
+	
+	# Lösche das Ui Ansicht 
+#	onready var ui : Node = get_node("/root/World/CanvasLayer/Ui")
+	get_node("/root").remove_child(ui)
+	ui.call_deferred("free")
+
+	# Zeige Endscreen an mit den EndScores
+	var endScreenRes = load('res://Player/Screens/Endscreen.tscn')
+	var endScreen = endScreenRes.instance()
+	endScreen.set_player_color(color)
+	get_node("/root").add_child(endScreen)
+	
 	print("you diiiied!!!! Dont hit yourself xD")
 
 # leander stuff

@@ -86,6 +86,7 @@ remote func create_ball(id):
 		'block_ball':
 			curr_player.current_ball = block_ball.instance()
 		
+	curr_player.current_ball.set_player(curr_player)
 	curr_player.current_ball.color = curr_player.color
 	
 	# maybe get node by player_id is necesseray

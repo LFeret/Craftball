@@ -6,8 +6,14 @@ var current_shot_count:int
 var colorFirstShot = 'yellow'
 var colorSecondShot = 'red'
 
+var player
+
 func _ready():
 	bouncing_count = 3
+	
+func set_player(playerObject):
+	player = playerObject
+
 
 func _on_ball_body_entered(body):	
 	# Painting Floor Stuff
@@ -25,6 +31,8 @@ func _on_ball_body_entered(body):
 	elif body.get_type() == 'Player':
 		body.hit()
 	elif body.get_type() == 'bot':
+		if player != null:
+			player.add_score(10)
 		if not is_bot_ball:
 			body.hit()
 	

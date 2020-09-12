@@ -85,6 +85,7 @@ func set_throw_direction():
 
 func hit():
 	life -= 1
+	
 	if life <= 0:
 		self.die()
 
