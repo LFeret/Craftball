@@ -1,5 +1,6 @@
 extends KinematicBody
 
+var player
 
 var id
 var color
@@ -19,7 +20,7 @@ var walking_speed = 0.01
 
 var throw_direction = Vector3(0,0,0)
 
-var throw_intervall = 5
+var throw_intervall = 3
 var move_intervall = 0.06
 
 var rng
@@ -33,6 +34,7 @@ func get_type():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = get_parent().sinlge_player
 	rng = RandomNumberGenerator.new()
 	walking_direction = Vector3(rng.randi_range(-10, 10), 0, rng.randi_range(-10, 10))
 
@@ -46,6 +48,13 @@ func _process(delta):
 		timerVar = 0
 		
 		if throw_time >= throw_intervall:
+			
+			var try_hitting_player = rng.randi_range(0, 100)
+			if try_hitting_player > 80:
+				throw_direction = player.get_global_transform().origin
+			else:
+				throw_direction = Vector3(rng.randi_range(-5, 5), rng.randi_range(1, 5), rng.randi_range(-5, 5))
+			
 			throw_ball()
 			throw_time = 0
 	
@@ -90,9 +99,6 @@ func set_walking_direction(direction):
 func set_walking_speed(speed):
 	self.walking_speed = speed
 
-func set_throw_direction():
-	self.throw_direction = Vector3(0, -10, 0)
-
 func hit():
 	life -= 1
 	
@@ -131,7 +137,7 @@ func throw_ball():
 	current_ball.translate(Vector3(bot_position.x, bot_position.y - 2, bot_position.z))
 	
 	# set our starting velocity
-	current_ball.linear_velocity = force * 10 * rng.randi_range(1, 10)
+	current_ball.linear_velocity = force * rng.randi_range(1, 10)
 	
 	get_parent().add_child(current_ball) # add to World
 	

@@ -123,6 +123,7 @@ func spawn_player(id):
 	if not id in players.keys():
 		players[id] = player
 	
+	get_parent().sinlge_player = player
 	get_parent().add_child(player)
 
 func get_network_peer():
