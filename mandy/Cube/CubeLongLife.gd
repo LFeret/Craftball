@@ -30,9 +30,9 @@ func count_hit():
 		paint_self(colorFirstShot)
 	elif current_shot_count == 2:
 		paint_self(colorSecondShot)
-	elif current_shot_count == 2:
+	elif current_shot_count == 3:
 		paint_self(colorThirdShot)
-	elif current_shot_count == 2:
+	elif current_shot_count == 4:
 		paint_self(colorFourthShot)
 	elif current_shot_count >= max_shots:
 		explode()
@@ -74,9 +74,9 @@ func paint_self(color):
 		'yellow':
 			material.albedo_color = Color(1,1,0)
 		'blue':
-			material.albedo_color = Color(0.94, 1, 1)
+			material.albedo_color = Color(0,0,1)
 		'green':
-			material.albedo_color = Color(0, 1, 0)
+			material.albedo_color = Color(0,1,0)
 	
 	$CollisionShape.get_child(0).set_surface_material(0, material)
 
