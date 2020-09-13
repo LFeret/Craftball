@@ -52,8 +52,7 @@ func explode():
 		
 	var cube_position = get_global_transform().origin
 	current_explosion.translate(cube_position)
-	
-	var aaaaa= get_parent()
+
 	if get_parent().get_path() == "/root":
 		get_parent().add_child(current_explosion)
 	else:

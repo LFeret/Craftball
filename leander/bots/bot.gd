@@ -33,8 +33,13 @@ var throw_time = 0
 var move_time = 0
 var timerVar = 0
 
+var score: int = 0
+
 func get_type():
 	return 'bot'
+
+func add_score(amount):
+	score += amount
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

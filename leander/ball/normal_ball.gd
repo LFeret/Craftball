@@ -11,6 +11,7 @@ var player
 func _ready():
 	bouncing_count = 3
 	
+# Player
 func set_player(playerObject):
 	player = playerObject
 
@@ -30,6 +31,8 @@ func _on_ball_body_entered(body):
 		body.queue_free()
 	elif body.get_type() == 'Player':
 		body.hit()
+		if(current_player.get_type() == "bot"):
+			current_player.add_score(10)
 	elif body.get_type() == 'bot':
 		if player != null:
 			player.add_score(10)
