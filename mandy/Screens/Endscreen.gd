@@ -28,17 +28,18 @@ func show_color_score():
 	for hex in hexes:
 		var farebe = hex.get_Color()
 		var rtfghj
-		match hex.get_Color():
-			"red":
-				redCount += 1
-			"blue":
-				blueCount += 1
-			"green":
-				greenCount += 1
-			"yellow":
-				yellowCount += 1
-			"white":
-				whiteCount += 1
+		if not hex.get_is_wall():
+			match hex.get_Color():
+				"red":
+					redCount += 1
+				"blue":
+					blueCount += 1
+				"green":
+					greenCount += 1
+				"yellow":
+					yellowCount += 1
+				"white":
+					whiteCount += 1
 				
 	match playerColor:
 		"red":
