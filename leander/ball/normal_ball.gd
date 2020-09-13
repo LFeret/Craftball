@@ -35,7 +35,7 @@ func _on_ball_body_entered(body):
 			player.add_score(10)
 			if body.get_lifes() == 1 :
 				player.count_destroyed_bots()
-				if player.get_destroyedBots() == 3:
+				if player.get_destroyed_bots() == 3:
 					player.win()
 		if not is_bot_ball:
 			body.hit()
