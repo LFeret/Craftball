@@ -53,7 +53,11 @@ func explode():
 	var cube_position = get_global_transform().origin
 	current_explosion.translate(cube_position)
 	
-	get_parent().get_parent().add_child(current_explosion)
+	var aaaaa= get_parent()
+	if get_parent().get_path() == "/root":
+		get_parent().add_child(current_explosion)
+	else:
+		get_parent().get_parent().add_child(current_explosion)
 	
 	if is_instance_valid(self):
 		self.queue_free()

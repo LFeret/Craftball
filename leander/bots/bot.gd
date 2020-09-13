@@ -25,7 +25,7 @@ var throw_intervall = 3
 var move_intervall = 0.06
 
 var block_time = 0
-var block_intervall = 15
+var block_intervall = 5
 
 var rng
 
@@ -125,11 +125,18 @@ func set_block():
 	var current_cube = cube.instance()
 	
 	current_cube.original_parent = self
+	var parent = current_cube.original_parent
 	
 	var bot_position = self.get_global_transform().origin
 	current_cube.translate(Vector3(bot_position.x, bot_position.y - 2, bot_position.z))
 	
-	get_parent().add_child(current_cube)
+#	original_parent.get_parent().add_child(self)
+	current_cube.set_original_parent(parent)
+	self.get_parent().add_child(current_cube)
+	
+	#  Cube Position
+#	curr_player.get_parent().add_child(current_cube)
+#	curr_player.current_cube.pick_up(self, self)
 
 func throw_ball():
 	match ball_type:

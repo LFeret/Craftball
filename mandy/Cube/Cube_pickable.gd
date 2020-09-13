@@ -19,6 +19,9 @@ var closest_count = 0
 
 var thrown = false
 
+func set_original_parent(parent):
+	original_parent = parent
+
 # have we been picked up?
 func is_picked_up():
 	if picked_up_by:
@@ -94,7 +97,11 @@ func pick_up(by, with_controller):
 	var original_transform = global_transform
 	
 	if original_parent:
-		original_parent.get_parent().remove_child(self)
+		if original_parent.get_path() == "/root":
+			original_parent = get_node("/root/World")
+			original_parent.remove_child(self)
+		else:
+			original_parent.get_parent().remove_child(self)
 	picked_up_by.add_child(self)
 	
 	if reset_transform_on_pickup:
