@@ -28,9 +28,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 477.0
-margin_top = 739.0
+margin_top = 636.0
 margin_right = 5421.0
-margin_bottom = 4187.0
+margin_bottom = 5419.0
 rect_scale = Vector2( 0.173, 0.147 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,12 +45,12 @@ stretch_mode = 4
 [node name="CenterRow" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 1924.0
 margin_right = 4944.0
-margin_bottom = 3448.0
+margin_bottom = 4783.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow"]
 margin_right = 4944.0
-margin_bottom = 1524.0
+margin_bottom = 2859.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -67,16 +67,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HitScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
+[node name="PlayerScore" type="HBoxContainer" parent="VBoxContainer/CenterRow/VBoxContainer"]
 margin_top = 655.0
 margin_right = 4944.0
-margin_bottom = 969.0
+margin_bottom = 2559.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore"]
+margin_left = 2472.0
+margin_right = 2472.0
+margin_bottom = 1904.0
+alignment = 1
+
+[node name="HitScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
+margin_bottom = 314.0
 custom_fonts/font = SubResource( 2 )
 align = 1
 
-[node name="ColorScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer"]
-margin_top = 973.0
-margin_right = 4944.0
-margin_bottom = 1287.0
+[node name="ColorScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
+margin_top = 318.0
+margin_bottom = 632.0
 custom_fonts/font = SubResource( 3 )
+align = 1
+
+[node name="yellowBot" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
+margin_top = 636.0
+margin_bottom = 950.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
+align = 1
+
+[node name="blueBot" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
+margin_top = 954.0
+margin_bottom = 1268.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
+align = 1
+
+[node name="redBot" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
+margin_top = 1272.0
+margin_bottom = 1586.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
+align = 1
+
+[node name="greenBot" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
+margin_top = 1590.0
+margin_bottom = 1904.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
 align = 1

@@ -46,12 +46,12 @@ stretch_mode = 4
 [node name="CenterRow" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 1986.0
 margin_right = 4944.0
-margin_bottom = 7755.0
+margin_bottom = 5289.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow"]
 margin_right = 4944.0
-margin_bottom = 5769.0
+margin_bottom = 3303.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
