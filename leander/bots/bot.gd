@@ -35,11 +35,14 @@ var timerVar = 0
 
 var score: int = 0
 
+onready var ui : Node = get_node("/root/World/CanvasLayer/Ui")
+
 func get_type():
 	return 'bot'
 
 func add_score(amount):
 	score += amount
+	ui.update_bot_score(color)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

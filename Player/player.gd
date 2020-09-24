@@ -43,6 +43,8 @@ func _ready():
 	ui.update_health_bar(curHp, maxHp)
 	ui.update_score_text(score)
 	
+func get_type():
+	return 'Player'
 
 func set_name(name):
 	# wird vom Multiplayer gestarted, sobald sich ein client verbindet!
