@@ -29,30 +29,29 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 477.0
-margin_top = 739.0
+margin_top = 664.0
 margin_right = 5421.0
-margin_bottom = 4187.0
+margin_bottom = 5953.0
 rect_scale = Vector2( 0.173, 0.147 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Scull" type="TextureRect" parent="VBoxContainer"]
-margin_right = 5000.0
+margin_right = 4944.0
 margin_bottom = 1982.0
-rect_scale = Vector2( 0.949, 0.892 )
 texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="CenterRow" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 1791.0
+margin_top = 1986.0
 margin_right = 4944.0
-margin_bottom = 5293.0
+margin_bottom = 7755.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow"]
 margin_right = 4944.0
-margin_bottom = 3502.0
+margin_bottom = 5769.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -73,24 +72,30 @@ __meta__ = {
 margin_top = 841.0
 margin_right = 4944.0
 margin_bottom = 3303.0
+alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore"]
+margin_left = 2472.0
+margin_right = 2472.0
 margin_bottom = 2462.0
 
 [node name="HitScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
 margin_bottom = 407.0
 custom_fonts/font = SubResource( 2 )
+align = 1
 
 [node name="ColorScore" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
 margin_top = 411.0
 margin_bottom = 818.0
 custom_fonts/font = SubResource( 3 )
+align = 1
 
 [node name="yellowBot" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
 margin_top = 822.0
 margin_bottom = 1229.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -100,22 +105,18 @@ margin_top = 1233.0
 margin_bottom = 1640.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
+align = 1
 
 [node name="redBot" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
 margin_top = 1644.0
 margin_bottom = 2051.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
+align = 1
 
 [node name="greenBot" type="Label" parent="VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer"]
 margin_top = 2055.0
 margin_bottom = 2462.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.513726, 0.0117647, 0.0117647, 1 )
-
-[node name="BotScore" type="HBoxContainer" parent="VBoxContainer/CenterRow/VBoxContainer"]
-margin_top = 3307.0
-margin_right = 4944.0
-margin_bottom = 3307.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterRow/VBoxContainer/BotScore"]
+align = 1

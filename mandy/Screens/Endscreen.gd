@@ -64,20 +64,23 @@ func show_hit_score():
 func show_bot_score():
 	if playerColor != "red":
 		var redScore = ui.get_bot_score("red")
-		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/redBot").text = "HitScore: " + str(redScore)
+		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/redBot").text = "RedBot HitScore: " + str(redScore)
 		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/redBot").show()
+
 	if playerColor != "green":	
 		var greenScore = ui.get_bot_score("green")
-		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/greenBot").text = "HitScore: " + str(greenScore)
+		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/greenBot").text = "GreenBot HitScore: " + str(greenScore)
 		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/greenBot").show()
+
 	if playerColor != "yellow":
 		var yellowScore = ui.get_bot_score("yellow")
-		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/yellowBot").text = "HitScore: " + str(yellowScore)
+		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/yellowBot").text = "YellowBot HitScore: " + str(yellowScore)
 		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/yellowBot").show()
+
 	if playerColor != "blue":
 		var blueScore = ui.get_bot_score("blue")
-		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/blueBot").text = "HitScore: " + str(blueScore)
+		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/blueBot").text = "BlueBot HitScore: " + str(blueScore)
 		get_node("VBoxContainer/CenterRow/VBoxContainer/PlayerScore/VBoxContainer/blueBot").show()
-		
+
 	
 
