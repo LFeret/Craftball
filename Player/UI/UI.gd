@@ -24,7 +24,7 @@ func update_score_text (score):
 func get_hit_score():
 	return hitScore
 	
-func update_bot_score(score, color):
+func update_bot_score(color):
 	match color:
 				"red":
 					redBot += 10
