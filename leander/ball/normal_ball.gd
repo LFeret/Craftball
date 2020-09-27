@@ -6,14 +6,15 @@ var current_shot_count:int
 var colorFirstShot = 'yellow'
 var colorSecondShot = 'red'
 
-var player
+# setzt den Player, wenn der Ball vom Spieler geworfen wurde (nicht Bot)
+var player_ball
 
 func _ready():
 	bouncing_count = 3
 	
 # Player
 func set_player(playerObject):
-	player = playerObject
+	player_ball = playerObject
 
 
 func _on_ball_body_entered(body):	
@@ -34,12 +35,12 @@ func _on_ball_body_entered(body):
 		if(current_player.get_type() == "bot"):
 			current_player.add_score(10)
 	elif body.get_type() == 'bot':
-		if player != null:
-			player.add_score(10)
+		if player_ball != null:
+			player_ball.add_score(10)
 			if body.get_lifes() == 1 :
-				player.count_destroyed_bots()
-				if player.get_destroyed_bots() == 3:
-					player.win()
+				player_ball.count_destroyed_bots()
+				if player_ball.get_destroyed_bots() == 3:
+					player_ball.win()
 		if not is_bot_ball:
 			body.hit()
 	

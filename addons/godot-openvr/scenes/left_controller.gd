@@ -8,7 +8,7 @@ enum MOVEMENT_TYPE { MOVE_AND_ROTATE, MOVE_AND_STRAFE }
 
 # to combat motion sickness we'll 'step' our left/right turning
 export var smooth_rotation = false
-export var smooth_turn_speed = 2.0
+export var smooth_turn_speed = 4.0
 export var step_turn_delay = 0.15
 export var step_turn_angle = 20.0
 export var drag_factor = 0.1
@@ -75,13 +75,13 @@ func _process(delta):
 	# --------------------
 		# NOTE: you may need to change this depending on which VR controllers
 		# you are using and which OS you are on.
-#	var trackpad_vector = Vector2(-get_joystick_axis(1), get_joystick_axis(0))
+	var trackpad_vector = Vector2(-get_joystick_axis(1), get_joystick_axis(0))
 	var joystick_vector = Vector2(-get_joystick_axis(5), get_joystick_axis(4))
 
-#	if trackpad_vector.length() < CONTROLLER_DEADZONE:
-#		trackpad_vector = Vector2(0, 0)
-#	else:
-#		 trackpad_vector = trackpad_vector.normalized() * ((trackpad_vector.length() - CONTROLLER_DEADZONE) / (1 - CONTROLLER_DEADZONE))
+	if trackpad_vector.length() < CONTROLLER_DEADZONE:
+		trackpad_vector = Vector2(0, 0)
+	else:
+		 trackpad_vector = trackpad_vector.normalized() * ((trackpad_vector.length() - CONTROLLER_DEADZONE) / (1 - CONTROLLER_DEADZONE))
 
 	if joystick_vector.length() < CONTROLLER_DEADZONE:
 		joystick_vector = Vector2(0, 0)
@@ -91,7 +91,7 @@ func _process(delta):
 	var forward_direction = get_parent().get_node("ARVRCamera").global_transform.basis.z.normalized()
 	var right_direction = get_parent().get_node("ARVRCamera").global_transform.basis.x.normalized()
 
-	#var movement_vector = (trackpad_vector + joystick_vector).normalized()
+#	var movement_vector = (trackpad_vector + joystick_vector).normalized()
 	var movement_vector = (joystick_vector).normalized()
 
 	var movement_forward = forward_direction * movement_vector.x * delta * MOVEMENT_SPEED
@@ -163,59 +163,4 @@ func _process(delta):
 		turn_step = 0.0
 
 
-	################################################################
-	#	var playerBody = get_parent().get_node("player_body")
-	################################################################
-	# now we do our movement
-	# We start with placing our KinematicBody in the right place
-	# by centering it on the camera but placing it on the ground
-#	var curr_transform = get_parent().get_node("player_body").global_transform
-#	var camera_transform = camera_node.global_transform
-#	curr_transform.origin = camera_transform.origin
-#	curr_transform.origin.y = origin_node.global_transform.origin.y
-#
-#	# now we move it slightly back
-#	var forward_dir = -camera_transform.basis.z
-#	forward_dir.y = 0.0
-#	if forward_dir.length() > 0.01:
-#		curr_transform.origin += forward_dir.normalized() * -0.75 * player_radius
-#
-#	get_parent().get_node("player_body").global_transform = curr_transform
-#
-#	# we'll handle gravity separately
-#	var gravity_velocity = Vector3(0.0, velocity.y, 0.0)
-#	velocity.y = 0.0
-#
-#	# Apply our drag
-#	velocity *= (1.0 - drag_factor)
-#
-#	if move_type == MOVEMENT_TYPE.MOVE_AND_ROTATE:
-#		if (abs(forwards_backwards) > 0.1 ):
-#			var dir = camera_transform.basis.z
-#			dir.y = 0.0
-#			velocity = dir.normalized() * -forwards_backwards * delta * max_speed * ARVRServer.world_scale
-#			#velocity = velocity.linear_interpolate(dir, delta * 100.0)
-#	elif move_type == MOVEMENT_TYPE.MOVE_AND_STRAFE:
-#		if ((abs(forwards_backwards) > 0.1 ||  abs(left_right) > 0.1) ):
-#			var dir_forward = camera_transform.basis.z
-#			dir_forward.y = 0.0
-#			# VR Capsule will strafe left and right
-#			var dir_right = camera_transform.basis.x;
-#			dir_right.y = 0.0
-#			velocity = (dir_forward * -forwards_backwards + dir_right * left_right).normalized() * delta * max_speed * ARVRServer.world_scale
-#
-#	# apply move and slide to our kinematic body
-#	velocity = get_parent().get_node("player_body").move_and_slide(velocity, Vector3(0.0, 1.0, 0.0))
-#
-#	# apply our gravity
-#	gravity_velocity.y += gravity * delta
-#	gravity_velocity = get_parent().get_node("player_body").move_and_slide(gravity_velocity, Vector3(0.0, 1.0, 0.0))
-#	velocity.y = gravity_velocity.y
-#
-#	# now use our new position to move our origin point
-#	var movement = (get_parent().get_node("player_body").global_transform.origin - curr_transform.origin)
-#	origin_node.global_transform.origin += movement
-#
-#	# Return this back to where it was so we can use its collision shape for other things too
-#	# $KinematicBody.global_transform.origin = curr_transform.origin
-#
+	
