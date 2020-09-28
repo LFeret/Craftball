@@ -13,7 +13,6 @@ func _ready():
 	pass # Replace with function body.
 
 func update_health_bar (curHp, maxHp):
- 
 	healthBar.max_value = maxHp
 	healthBar.value = curHp
  

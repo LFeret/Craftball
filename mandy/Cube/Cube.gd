@@ -36,12 +36,10 @@ func _on_Cube_body_entered(body):
 	if body.get_type() == 'HexTile':
 		$audio.play(0)
 	elif body.get_type() == "Cube":
-		#$audio.play(0)
 		pass
 	elif body.get_type() == "Ball":
-		print(body.get_type())
+		pass
 	elif body.get_type() == "Player":
-		print("PLAYER!")
 		pass
 
 func _on_Cube_body_exited(body):
